@@ -172,10 +172,10 @@ input[type=text]:focus,input[type=password]:focus,input[type=number]:focus, text
 
 .md #bottom,.ios #bottom {
     bottom:0;
-    height:74px;
+    height:50px;
     width:100%;
     position: fixed;
-    z-index: 99 ;
+    z-index: 1 !important ;
 
     position: fixed;
 }
