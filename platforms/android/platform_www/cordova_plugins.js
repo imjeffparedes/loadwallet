@@ -16,6 +16,22 @@ module.exports = [
     "clobbers": [
       "window.StatusBar"
     ]
+  },
+  {
+    "id": "cordova-plugin-shared-preferences.SharedPreferences",
+    "file": "plugins/cordova-plugin-shared-preferences/www/SharedPreferences.js",
+    "pluginId": "cordova-plugin-shared-preferences",
+    "clobbers": [
+      "SharedPreferences"
+    ]
+  },
+  {
+    "id": "cordova-sqlite-storage.SQLitePlugin",
+    "file": "plugins/cordova-sqlite-storage/www/SQLitePlugin.js",
+    "pluginId": "cordova-sqlite-storage",
+    "clobbers": [
+      "SQLitePlugin"
+    ]
   }
 ];
 module.exports.metadata = 
@@ -24,7 +40,9 @@ module.exports.metadata =
   "cordova-plugin-console": "1.0.7",
   "cordova-plugin-inappbrowser": "2.0.1",
   "cordova-plugin-statusbar": "1.0.1",
-  "cordova-plugin-whitelist": "1.2.2"
+  "cordova-plugin-whitelist": "1.2.2",
+  "cordova-plugin-shared-preferences": "0.0.1",
+  "cordova-sqlite-storage": "2.2.0"
 };
 // BOTTOM OF METADATA
 });

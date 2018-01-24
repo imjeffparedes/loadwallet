@@ -35,21 +35,21 @@
     <div class="statusbar no-ripple"></div>
       <!-- Left panel with cover effect-->
 
-      <div class="panel panel-left panel-cover">
-        <div class="image">
-          
-            <img src="img/header_background.png" height="160px">
+    <div class="panel panel-left panel-cover">
+      <div class="image">
+        
+          <img src="img/header_background.png" height="160px">
 
-            <img class="logo" src="img/logo_brand_3.png" height="50px">
+          <img class="logo" src="img/logo_brand_3.png" height="50px">
 
-            <h2>Jeff Paredes</h2>
-            <p>jeffretailer | jeff@comgtech.com</p>
-        </div>
+          <h2 id="txt-user-name">Jeff Paredes</h2>
+          <p  id="txt-user-info">jeffretailer | jeff@comgtech.com</p>
+      </div>
 
-        <div class="list drawer">
+      <div class="list drawer">
         <ul>
           <li class="drawer-item-active" id="drawer-item-reload" >
-            <a href="/">
+            <a href="/reload/">
             <label class="item-radio item-content no-ripple" >
               <input type="radio" id="reload-radio" value="Books" />
               <i class="icon color-gray"><img width="25" src="https://cdn3.iconfinder.com/data/icons/linecons-free-vector-icons-pack/32/phone-128.png"></i>
@@ -104,7 +104,7 @@
             </a>
           </li>
           <li>
-            <a href="/login/">
+            <a href="#">
             <label class="item-radio item-content no-ripple"  id="drawer-item-login">
               <input type="radio" name="logout-radio" value="Drinks"/>
               <i class="icon color-gray"><img width="25" src="https://cdn4.iconfinder.com/data/icons/simple-lines-2/32/Exit_Arrow_Door_Signout_Out_Close-128.png"></i>
@@ -116,243 +116,113 @@
           </li>
         </ul>
       </div>
-      <!--
-      <div class="block" >
 
-        <p><a class="panel-close" href="https://loadwallet.com/#!/mobile/privacy-policy">PRIVACY POLICY</a></p>
-        <p><a class="panel-close" href="https://loadwallet.com/#!/mobile/terms-and-condition">TERMS OF USE</a></p>
-        <p><a class="panel-close" href="#">FAQs</a></p>
-      </div>
-    -->
     </div>
 
     <!-- Views/Tabs container -->
     <div class="views ios-edges">
-      <!-- Tabbar for switching views-tabs 
-      <div class="toolbar tabbar-labels toolbar-submit toolbar-bottom-md bg-color-submit" style="height: 50px;">
-        <div class="toolbar-inner">
-          <a href="#view-home" class="tab-link">
-            <p class="text-align-center " id="submit-button" style="font-size: 1.2em; color: white; margin: 7px;">SUBMIT</p>
-          </a>
-          
-        </div>
-        <div style="height: 24px;"></div>
-      </div>
 
-      -->
-
+    
 
       <!-- Your main view/tab, should have "view-main" class. It also has "tab-active" class -->
       <div id="view-home" class="view view-main tab tab-active">
-        <!-- Page, data-name contains page name which can be used in page callbacks -->
-        <div class="page" data-name="home">
-          <!-- Top Navbar -->
-          <div class="navbar">
-            <div class="navbar-inner bg-color-primary">
-              <div class="left">
-                <a href="#" class="link icon-only panel-open no-ripple" data-panel="left">
-                  <i class="icon f7-icons ios-only">menu</i>
-                  <i class="icon material-icons md-only">menu</i>
-                </a>
-              </div>
-              <div class="title sliding">Home</div>
-              <div class="right">
-                <a href="#" class="link icon-only panel-open no-ripple" data-panel="right">
-                  <i class="icon f7-icons ios-only">more_vert</i>
-                  <i class="icon material-icons md-only">more_vert</i>
-                </a>
-              </div>
+        <div class="page bg-color-login" data-name="login">
+  
+          <div class="page-content bg-color-login middle" >
+
+            <br><br>
+            <div class="block center">  
+                <div class="logo" style="margin: 35px;">
+                  <img src="img/logo_brand_3.png" width="100%"  style="max-width: 500px;">   
+                </div>
             </div>
-          </div>
-
-          <!-- Scrollable page content-->
-          <div class="page-content center">
-                <br>
-
-                  <div class="block" style="margin: 20px;">
-                    <img src="img/providers.png" width="100%" >
-                  </div>
-
-                   <div class="list no-hairlines form">
-                      <ul>
-                        <li class="item-content item-input">
-                          <div class="item-inner">
-                            <div class="item-title item-label">Target Number</div>
-                            <div class="">
-                              <input type="number" placeholder="e.g 09181234567 or 45171818"  class="text-align-center">
-                              <span class="input-clear-button "></span>
-                            </div>
-                          </div>
-                        </li>
-                      </ul>
-
-                      <ul>
-                          <li>
-                            <div class="item-content item-input" >
-                              <div class="item-inner">
-                                <div class="item-title item-label">Select Product Type</div>
-                                <div class="">
-                                  <input type="text" placeholder="Select Product Type" readonly="readonly" id="select-product-type"  style="float: center; text-align: center;"/>
-                                </div>
-                              </div>
-                            </div>
-                          </li>
-                        </ul>
-                         <ul>
-                          <li>
-                            <div class="item-content item-input">
-                              <div class="item-inner">
-                                <div class="item-title item-label">Select Amount</div>
-                                <div class="">
-                                  <input type="text" placeholder="Select Amount" readonly="readonly" id="select-product-amount"  style="float: center; text-align: center;"/>
-                                </div>
-                              </div>
-                            </div>
-                          </li>
-                        </ul>
-                     
-                    </div>
-
-<!--
-                  <div class="block-title">Available Balance</div>
-                  <div class="block">
-                    
-                    <div class="card" style="padding: 10px;">
-                        <div class="card-content">
-                            Card content 
-                            
-                            <p>
-                              <h1 class=" text-align-center text-color-green">1,202.00</h1>
-                            </p>
-                            <p class="text-align-center">Updated as of Jan 1, 2018 3:00PM</p>
-                            
-                        </div>
-                    </div>
-                  </div>
-                   <div class="block-title">Reload</div>
-                  <div class="block" >
-                    
-                    <div class="card" style="padding: 10px;">
-                        <div class="card-content">
-
-                           <div class="list no-hairlines-md">
-                            <ul>
-                              <li class="item-content item-input">
-                                <div class="item-inner">
-                                  <div class="item-title item-label">Enter target number</div>
-                                  <div class="item-input-wrap">
-                                    <input type="number" placeholder="e.g 09181234567 or 45171818">
-                                    <span class="input-clear-button"></span>
-                                  </div>
-                                </div>
-                              </li>
-                            </ul>
-                          </div>
-
-
-                          <a href="reload/"><button class="button">Next</button></a>
-                        </div>
-                    </div>
-                  </div>
-                -->
-           <!--
-
-            <div class="block-title">Navigation</div>
-            <div class="list">
-              <ul>
-                <li>
-                  <a href="/about/" class="item-content item-link">
+            <div class="text-align-center" id="login-preloader" hidden="true">
+              <div class="preloader"></div>
+            </div>
+            <span id="login-form">
+              <div class="text-color-white center">Sign in with your account</div>
+              <div class="list inset no-hairlines form">
+                <ul id="txt-login-mpin-container">
+                 
+                  <li class="item-content item-input">
                     <div class="item-inner">
-                      <div class="item-title">About</div>
+                      <div class="">
+                        <input type="password" placeholder="Enter your MPIN" id="txt-login-mpin" class="text-align-center" >
+                        <span class="input-clear-button"></span>
+                      </div>
                     </div>
-                  </a>
-                </li>
-              </ul>
-            </div>
+                  </li>
 
-            <div class="block-title">Modals</div>
-            <div class="block block-strong">
-              <div class="row">
-                <div class="col-50">
-                  <a href="#" class="button button-raised button-fill popup-open" data-popup="#my-popup">Popup</a>
-                </div>
-                <div class="col-50">
-                  <a href="#" class="button button-raised button-fill login-screen-open" data-login-screen="#my-login-screen">Login Screen</a>
-                </div>
+                </ul>
+                <ul  id="txt-login-username-container">
+                 
+                  <li class="item-content item-input">
+                    <div class="item-inner">
+                      <div class="">
+                        <input type="text" placeholder="Username" value="jeffretailer2" id="txt-login-username" class="text-align-center">
+                        <span class="input-clear-button"></span>
+                      </div>
+                    </div>
+                  </li>
+
+                </ul>
+                 <ul  id="txt-login-password-container">
+                 
+                  <li class="item-content item-input">
+                    <div class="item-inner">
+                      <div class="">
+                        <input type="password" placeholder="Password" value="admin" id="txt-login-password" class="text-align-center">
+                        <span class="input-clear-button"></span>
+                      </div>
+                    </div>
+                  </li>
+                  
+                </ul>
               </div>
-            </div>
+              <div class="block center">
+                <p><a href="/forgot-password/" class="text-color-white" style="text-decoration: underline;">Forgot Password?</a></p>
+                <p class="text-color-white" id="btn-sms-mode">
+                    <!-- checkbox element -->
+                      <label class="checkbox">
+                        <!-- checkbox input -->
+                        <input type="checkbox"  id="chk-sms-mode">
+                        <!-- checkbox icon -->
+                        <i class="icon-checkbox"></i>
+                      </label>
+                      SMS Mode
+                </p>
 
-            <div class="block-title">Panels</div>
-            <div class="block block-strong">
-              <div class="row">
-                <div class="col-50">
-                  <a href="#" class="button button-raised button-fill panel-open" data-panel="left">Left Panel</a>
+
+
+
+                  <p class="text-color-white">By continuing, you agree to our <a href="#" id="link-privacy-policy" target="_blank" class="text-color-white" style="text-decoration: underline;">Privacy Policy</a> and accept our <a href="#" id="link-terms"  class="text-color-white" style="text-decoration: underline;">Terms and Condition</a></p>
+
                 </div>
-                <div class="col-50">
-                  <a href="#" class="button button-raised button-fill panel-open" data-panel="right">Right Panel</a>
-                </div>
-              </div>
-            </div>
 
-            <div class="block-title searchbar-hide-on-search">Page Loaders & Router</div>
-            <div class="list links-list searchbar-hide-on-search">
-              <ul>
-                <li>
-                  <a href="/page-loader-template7/vladimir/123/about-me/1/?start=0&end=30#top">Template7 Page</a>
-                </li>
-                <li>
-                  <a href="/page-loader-component/vladimir/123/about-me/1/?start=0&end=30#top">Component Page</a>
-                </li>
-                <li>
-                  <a href="/load-something-that-doesnt-exist/">Default Route (404)</a>
-                </li>
-                <li>
-                  <a href="/request-and-load/user/123456/">Request Data & Load</a>
-                </li>
-              </ul>
-            </div>
--->
-
-          <div id="bottom"><a id="btn-submit" class="button">SUBMIT</a></div>
+              </span>
+              <div id="bottom"><a id="btn-sign-in" class="button">SIGN IN</a></div>
           </div>
+        </div>
+
+      <!-- The Modal -->
+      <div id="modal" class="modal text-align-center">
+        <!-- Modal header -->
+        <div class="modal-header">
+          <p><b id='modalTitle'></b></p>
+        </div>
+        <!-- Modal content -->
+        <div class="modal-content">
+          <p id='modalContent'></p>
+          <button id="btnModalClose" class="button button-fill" style="background-color: #26cead">OK</button>
         </div>
       </div>
 
 
-
-      <!-- History View -->
-      <div id="view-history" class="view tab">
-        <!-- History page will be loaded here dynamically from /history/ route -->
-
       </div>
 
-      <!-- Settings View -->
-      <div id="view-settings" class="view tab">
-        <!-- Settings page will be loaded here dynamically from /settings/ route -->
-      </div>
     </div>
 
 
-    <!-- Popup -->
-    <div class="popup" id="my-popup">
-      <div class="view">
-        <div class="page">
-          <div class="navbar">
-            <div class="navbar-inner">
-              <div class="title">Popup</div>
-              <div class="right">
-                <a href="#" class="link popup-close">Close</a>
-              </div>
-            </div>
-          </div>
-          <div class="page-content">
-            <div class="block">
-              <p>Popup content goes here.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
 
   </div>
   <!-- Cordova -->
@@ -361,6 +231,7 @@
 
   <!-- Framework7 library -->
   <script src="lib/framework7/js/framework7.js"></script>
+  <script src="lib/moment.min.js"></script>
 
   <!-- App routes -->
   <script src="js/routes.js"></script>

@@ -30,5 +30,21 @@
     },
     "is_top_level": true,
     "variables": {}
+  },
+  "cordova-plugin-shared-preferences": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-shared-preferences"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-sqlite-storage": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-sqlite-storage@^2.2.0"
+    },
+    "is_top_level": true,
+    "variables": {}
   }
 }

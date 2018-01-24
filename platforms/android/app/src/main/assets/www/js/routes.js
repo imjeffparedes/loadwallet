@@ -9,12 +9,13 @@ routes = [
     url: './pages/about.html',
   },
   {
-    path: '/login/',
-    url: './pages/login.html',
-  },
-  {
     path: '/counter/',
     url: './pages/counter.html',
+  },
+  {
+    path: '/forgot-password/',
+    url: './pages/forgot-password.html',
+    animate: false
   },
   {
     path: '/reload/',
@@ -47,6 +48,10 @@ routes = [
   {
     path: '/search/',
     url: './pages/search.html',
+  },
+  {
+    path: '/reload/',
+    url: './pages/reload.html',
   },
   // Page Loaders & Router
   {

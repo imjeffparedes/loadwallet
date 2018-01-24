@@ -11,6 +11,12 @@
         <param name="android-package" value="org.apache.cordova.whitelist.WhitelistPlugin" />
         <param name="onload" value="true" />
     </feature>
+    <feature name="SharedPreferences">
+        <param name="android-package" value="name.ratson.cordova.plugin.SharedPreferencesPlugin" />
+    </feature>
+    <feature name="SQLitePlugin">
+        <param name="android-package" value="io.sqlc.SQLitePlugin" />
+    </feature>
     <name>Loadwallet</name>
     <description>
         A basic Framework7 template for PhoneGap.
@@ -18,6 +24,7 @@
     <author email="dev@cordova.apache.org" href="http://cordova.io">
         Apache Cordova Team
     </author>
+    <icon src="www/img/icon.png" />
     <content src="index.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
