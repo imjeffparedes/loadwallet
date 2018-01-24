@@ -35,7 +35,7 @@
     <allow-intent href="market:*" />
     <preference name="loglevel" value="DEBUG" />
     <preference name="android-minSdkVersion" value="14" />
-    <preference name="StatusBarOverlaysWebView" value="false" />
+    <preference name="StatusBarOverlaysWebView" value="true" />
     <preference name="StatusBarBackgroundColor" value="#165769" />
     <preference name="StatusBarStyle" value="lightcontent" />
 </widget>
