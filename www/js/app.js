@@ -34,7 +34,11 @@ var app  = new Framework7({
 
 
 
-
+document.addEventListener("deviceready", onDeviceReady, false);
+function onDeviceReady() {
+    console.log(StatusBar);
+    StatusBar.show();
+}
 // Init/Create views
 
 // Add view

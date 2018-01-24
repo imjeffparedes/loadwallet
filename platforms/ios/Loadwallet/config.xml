@@ -61,5 +61,4 @@
     <preference name="StatusBarOverlaysWebView" value="false" />
     <preference name="StatusBarBackgroundColor" value="#165769" />
     <preference name="StatusBarStyle" value="lightcontent" />
-    <preference name=" StatusBarOverlaysWebview" value="true" />
 </widget>
