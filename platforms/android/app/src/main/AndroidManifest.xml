@@ -7,7 +7,6 @@
             android:label="@string/activity_name" 
             android:launchMode="singleTop"
             android:name="MainActivity" 
-            android:icon="@mipmap/ic_launcher" 
             android:theme="@android:style/Theme.DeviceDefault.NoActionBar" 
             android:windowSoftInputMode="adjustResize">
             <intent-filter android:label="@string/launcher_name">
