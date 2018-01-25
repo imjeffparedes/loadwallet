@@ -33,6 +33,12 @@
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
     <allow-intent href="market:*" />
+    <icon density="ldpi" src="platforms/android/app/src/main/res/mipmap-ldpi/ic_launcher.png" />
+    <icon density="mdpi" src="platforms/android/app/src/main/res/mipmap-mdpi/ic_launcher.png" />
+    <icon density="hdpi" src="platforms/android/app/src/main/res/mipmap-hdpi/ic_launcher.png" />
+    <icon density="xhdpi" src="platforms/android/app/src/main/res/mipmap-xhdpi/ic_launcher.png" />
+    <icon density="xxhdpi" src="platforms/android/app/src/main/res/mipmap-xxhdpi/ic_launcher.png" />
+    <icon density="xxxhdpi" src="platforms/android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png" />
     <preference name="loglevel" value="DEBUG" />
     <preference name="android-minSdkVersion" value="14" />
     <preference name="StatusBarOverlaysWebView" value="true" />
