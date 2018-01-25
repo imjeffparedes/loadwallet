@@ -12,7 +12,8 @@
       "cordova-plugin-console": {},
       "cordova-plugin-statusbar": {},
       "cordova-plugin-inappbrowser": {},
-      "cordova-plugin-splashscreen": {}
+      "cordova-plugin-splashscreen": {},
+      "cordova-sqlite-storage": {}
     }
   },
   "dependencies": {

@@ -22,6 +22,36 @@ module.exports = [
         "clobbers": [
             "window.StatusBar"
         ]
+    },
+    {
+        "file": "plugins/cordova-plugin-shared-preferences/www/SharedPreferences.js",
+        "id": "cordova-plugin-shared-preferences.SharedPreferences",
+        "pluginId": "cordova-plugin-shared-preferences",
+        "clobbers": [
+            "SharedPreferences"
+        ]
+    },
+    {
+        "file": "plugins/cordova-plugin-splashscreen/www/splashscreen.js",
+        "id": "cordova-plugin-splashscreen.SplashScreen",
+        "pluginId": "cordova-plugin-splashscreen",
+        "clobbers": [
+            "navigator.splashscreen"
+        ]
+    },
+    {
+        "file": "plugins/cordova-plugin-splashscreen/src/browser/SplashScreenProxy.js",
+        "id": "cordova-plugin-splashscreen.SplashScreenProxy",
+        "pluginId": "cordova-plugin-splashscreen",
+        "runs": true
+    },
+    {
+        "file": "plugins/cordova-sqlite-storage/www/SQLitePlugin.js",
+        "id": "cordova-sqlite-storage.SQLitePlugin",
+        "pluginId": "cordova-sqlite-storage",
+        "clobbers": [
+            "SQLitePlugin"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -30,7 +60,10 @@ module.exports.metadata =
     "cordova-plugin-console": "1.0.7",
     "cordova-plugin-inappbrowser": "2.0.1",
     "cordova-plugin-statusbar": "1.0.1",
-    "cordova-plugin-whitelist": "1.2.2"
+    "cordova-plugin-whitelist": "1.2.2",
+    "cordova-plugin-shared-preferences": "0.0.1",
+    "cordova-plugin-splashscreen": "5.0.2-dev",
+    "cordova-sqlite-storage": "2.2.0"
 }
 // BOTTOM OF METADATA
 });

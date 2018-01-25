@@ -8,16 +8,25 @@
     },
     "installed_plugins": {
         "cordova-plugin-console": {
-            "PACKAGE_NAME": "com.phonegap.helloworld"
+            "PACKAGE_NAME": "com.comgtech.loadwalletapp"
         },
         "cordova-plugin-inappbrowser": {
-            "PACKAGE_NAME": "com.phonegap.helloworld"
+            "PACKAGE_NAME": "com.comgtech.loadwalletapp"
+        },
+        "cordova-plugin-shared-preferences": {
+            "PACKAGE_NAME": "com.comgtech.loadwalletapp"
+        },
+        "cordova-plugin-splashscreen": {
+            "PACKAGE_NAME": "com.comgtech.loadwalletapp"
         },
         "cordova-plugin-statusbar": {
-            "PACKAGE_NAME": "com.phonegap.helloworld"
+            "PACKAGE_NAME": "com.comgtech.loadwalletapp"
         },
         "cordova-plugin-whitelist": {
-            "PACKAGE_NAME": "com.phonegap.helloworld"
+            "PACKAGE_NAME": "com.comgtech.loadwalletapp"
+        },
+        "cordova-sqlite-storage": {
+            "PACKAGE_NAME": "com.comgtech.loadwalletapp"
         }
     },
     "dependent_plugins": {}

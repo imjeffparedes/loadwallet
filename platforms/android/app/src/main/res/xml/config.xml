@@ -37,12 +37,20 @@
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
     <allow-intent href="market:*" />
-    <icon density="ldpi" src="www/img/icons/android/Icon-36.png" />
-    <icon density="mdpi" src="www/img/icons/android/Icon-48.png" />
-    <icon density="hdpi" src="www/img/icons/android/Icon-72.png" />
-    <icon density="xhdpi" src="www/img/icons/android/Icon-96.png" />
-    <icon density="xxhdpi" src="www/img/icons/android/Icon-144.png" />
-    <icon density="xxxhdpi" src="www/img/icons/android/Icon-192.png" />
+    <icon density="ldpi" src="res/icons/android/Icon-36.png" />
+    <icon density="mdpi" src="res/icons/android/Icon-48.png" />
+    <icon density="hdpi" src="res/icons/android/Icon-72.png" />
+    <icon density="xhdpi" src="res/icons/android/Icon-96.png" />
+    <icon density="xxhdpi" src="res/icons/android/Icon-144.png" />
+    <icon density="xxxhdpi" src="res/icons/android/Icon-192.png" />
+    <splash density="land-hdpi" src="res/screen/android/land-hdpi.png" />
+    <splash density="land-ldpi" src="res/screen/android/land-ldpi.png" />
+    <splash density="land-mdpi" src="res/screen/android/land-mdpi.png" />
+    <splash density="land-xhdpi" src="res/screen/android/land-xhdpi.png" />
+    <splash density="port-hdpi" src="res/screen/android/port-hdpi.png" />
+    <splash density="port-ldpi" src="res/screen/android/port-ldpi.png" />
+    <splash density="port-mdpi" src="res/screen/android/port-mdpi.png" />
+    <splash density="port-xhdpi" src="res/screen/android/port-xhdpi.png" />
     <preference name="loglevel" value="DEBUG" />
     <preference name="android-minSdkVersion" value="14" />
     <preference name="StatusBarOverlaysWebView" value="true" />

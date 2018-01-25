@@ -1,8 +1,8 @@
 // Dom7
 var $$ = Dom7;
 var now = moment();
+var offset = 0, limit = 5;
 
-    var offset = 0, limit = 5;
 
 // Framework7 App main instance
 var app  = new Framework7({
@@ -18,7 +18,7 @@ var app  = new Framework7({
       user: {
         firstName: 'John',
         lastName: 'Doe',
-      },
+      }
     };
   },
   // App root methods
@@ -36,7 +36,6 @@ var app  = new Framework7({
 
 document.addEventListener("deviceready", onDeviceReady, false);
 function onDeviceReady() {
-    console.log(StatusBar);
     StatusBar.show();
 }
 // Init/Create views
