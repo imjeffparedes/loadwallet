@@ -25,12 +25,12 @@
         <preference name="StatusBarBackgroundColor" value="#165769" />
         <preference name="StatusBarStyle" value="lightcontent" />
 
-        <icon src="platform/android/app/src/main/res/mipmap-ldpi/ic_launcher.png" density="ldpi" />
-        <icon src="platform/android/app/src/main/res/mipmap-mdpi/ic_launcher.png" density="mdpi" />
-        <icon src="platform/android/app/src/main/res/mipmap-hdpi/ic_launcher.png" density="hdpi" />
-        <icon src="platform/android/app/src/main/res/mipmap-xhdpi/ic_launcher.png" density="xhdpi" />
-        <icon src="platform/android/app/src/main/res/mipmap-xxhdpi/ic_launcher.png" density="xxhdpi" />
-        <icon src="platform/android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png" density="xxxhdpi" />
+        <icon src="platforms/android/app/src/main/res/mipmap-ldpi/ic_launcher.png" density="ldpi" />
+        <icon src="platforms/android/app/src/main/res/mipmap-mdpi/ic_launcher.png" density="mdpi" />
+        <icon src="platforms/android/app/src/main/res/mipmap-hdpi/ic_launcher.png" density="hdpi" />
+        <icon src="platforms/android/app/src/main/res/mipmap-xhdpi/ic_launcher.png" density="xhdpi" />
+        <icon src="platforms/android/app/src/main/res/mipmap-xxhdpi/ic_launcher.png" density="xxhdpi" />
+        <icon src="platforms/android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png" density="xxxhdpi" />
 
     </platform>
     <platform name="ios">
