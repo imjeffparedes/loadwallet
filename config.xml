@@ -51,6 +51,5 @@
     <engine name="ios" spec="~4.4.0" />
     <engine name="android" spec="~7.0.0" />
     <plugin name="cordova-plugin-splashscreen" spec="https://github.com/apache/cordova-plugin-splashscreen.git" />
-    <plugin name="io.litehelpers.cordova.sqlite" spec="0.7.6" source="pgb" />
     <plugin name="cordova-sqlite-storage" spec="^2.2.0" />
 </widget>
