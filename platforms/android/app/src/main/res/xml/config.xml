@@ -1,5 +1,22 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="com.comgtech.loadwalletapp" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <feature name="InAppBrowser">
+        <param name="android-package" value="org.apache.cordova.inappbrowser.InAppBrowser" />
+    </feature>
+    <feature name="StatusBar">
+        <param name="android-package" value="org.apache.cordova.statusbar.StatusBar" />
+        <param name="onload" value="true" />
+    </feature>
+    <feature name="Whitelist">
+        <param name="android-package" value="org.apache.cordova.whitelist.WhitelistPlugin" />
+        <param name="onload" value="true" />
+    </feature>
+    <feature name="SharedPreferences">
+        <param name="android-package" value="name.ratson.cordova.plugin.SharedPreferencesPlugin" />
+    </feature>
+    <feature name="SQLitePlugin">
+        <param name="android-package" value="io.sqlc.SQLitePlugin" />
+    </feature>
     <name>Loadwallet</name>
     <description>
          Send load, pay bills, check current wallet balance, view previous transactions and manage account settings for loadwallet retailers.
@@ -16,12 +33,6 @@
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
     <allow-intent href="market:*" />
-    <icon density="ldpi" src="platform/android/app/src/main/res/mipmap-ldpi/ic_launcher.png" />
-    <icon density="mdpi" src="platform/android/app/src/main/res/mipmap-mdpi/ic_launcher.png" />
-    <icon density="hdpi" src="platform/android/app/src/main/res/mipmap-hdpi/ic_launcher.png" />
-    <icon density="xhdpi" src="platform/android/app/src/main/res/mipmap-xhdpi/ic_launcher.png" />
-    <icon density="xxhdpi" src="platform/android/app/src/main/res/mipmap-xxhdpi/ic_launcher.png" />
-    <icon density="xxxhdpi" src="platform/android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png" />
     <preference name="loglevel" value="DEBUG" />
     <preference name="android-minSdkVersion" value="14" />
     <preference name="StatusBarOverlaysWebView" value="true" />
