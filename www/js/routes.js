@@ -9,21 +9,14 @@ routes = [
     url: './pages/about.html',
   },
   {
-    path: '/counter/',
-    url: './pages/counter.html',
-  },
-  {
     path: '/forgot-password/',
     url: './pages/forgot-password.html',
-    animate: false
+    animate: false,
   },
   {
     path: '/reload/',
     url: './pages/reload.html',
-  },
-  {
-    path: '/form/',
-    url: './pages/form.html',
+    animate:false,
   },
   {
     path: '/history/',
@@ -34,24 +27,12 @@ routes = [
     url: './pages/balance.html',
   },
   {
-    path: '/settings/',
-    url: './pages/settings.html',
-  },
-  {
     path: '/change-pin/',
     url: './pages/change-pin.html',
   },
   {
     path: '/change-password/',
     url: './pages/change-password.html',
-  },
-  {
-    path: '/search/',
-    url: './pages/search.html',
-  },
-  {
-    path: '/reload/',
-    url: './pages/reload.html',
   },
   // Page Loaders & Router
   {

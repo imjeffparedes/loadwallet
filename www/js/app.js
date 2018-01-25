@@ -185,7 +185,6 @@ function getHistory(page){
         page.$el.find('#history-transaction-list').append(list);
       },
       function(xhr, status){
-
         app.dialog.close();
         modal( 'Request Failed', 'Failed to get history. Please try again later.','danger',function(){});
         
@@ -257,9 +256,6 @@ $$(document).on('click', '#drawer-item-login', function () {
 // Option 1. Using one 'page:init' handler for all pages
 $$(document).on('page:init', function (e) {
   // Do something here when page loaded and initialized
-
-
-
   var page =e.detail;
   console.log(page.name+' initialized' );
   
@@ -278,6 +274,26 @@ $$(document).on('page:init', function (e) {
       })
       //Switch Sms Mode
       var chk_sms_mode = $$('.page[data-name="login"]').find('#chk-sms-mode');
+      var icon_sms_mode = $$('.page[data-name="login"]').find('#icon-sms-mode');
+      
+      icon_sms_mode.on('click', function () {
+          var sms_mode = chk_sms_mode.prop('checked');
+          chk_sms_mode.attr({checked:sms_mode});
+
+          var username = page.$el.find('#txt-login-username-container')
+          var password = page.$el.find('#txt-login-password-container')
+          var mpin = page.$el.find('#txt-login-mpin-container')
+          if(sms_mode){
+            mpin.hide();
+            username.show();
+            password.show();
+          }else{
+            mpin.show();
+            username.hide();
+            password.hide(); 
+          }
+          console.log('icon clicked')
+      })
       page.$el.find('#btn-sms-mode').on('click', function () {
           var sms_mode = chk_sms_mode.prop('checked');
           chk_sms_mode.attr({checked:!sms_mode});
@@ -294,6 +310,8 @@ $$(document).on('page:init', function (e) {
             username.hide();
             password.hide(); 
           }
+
+          console.log('p clicked')
       })
   }else if(page.name == 'forgot-password'){
 
@@ -326,7 +344,6 @@ $$(document).on('page:init', function (e) {
         });
     
     });
-
   }else if(page.name == 'reload'){
 
     var pickerType =  app.picker.create({
@@ -358,7 +375,11 @@ $$(document).on('page:init', function (e) {
         app.dialog.preloader();
         setTimeout(function () {
           app.dialog.close();
+
+              app.dialog.alert($$('#txt-mobile').val());
+          
         }, 200);
+
     })
   
   }else if(page.name == 'history'){
