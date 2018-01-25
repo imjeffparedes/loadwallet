@@ -8,7 +8,8 @@ platforms/ios/cordova/console.log
 *.xcuserdatad
 
 # android
-platforms/android/.gradle
+platforms/android/.gradle/
+platforms/android/.idea/
 platforms/android/assets/www
 platforms/android/bin
 platforms/android/gen
