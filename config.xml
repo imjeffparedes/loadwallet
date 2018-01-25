@@ -24,7 +24,13 @@
         <preference name="StatusBarOverlaysWebView" value="true" />
         <preference name="StatusBarBackgroundColor" value="#165769" />
         <preference name="StatusBarStyle" value="lightcontent" />
-        <icon src="www/img/icons/android/Icon-72.png" />
+        <icon density="ldpi" src="www/img/icons/android/Icon-36.png" />
+        <icon density="mdpi" src="www/img/icons/android/Icon-48.png" />
+        <icon density="hdpi" src="www/img/icons/android/Icon-72.png" />
+        <icon density="xhdpi" src="www/img/icons/android/Icon-96.png" />
+        <icon density="xxhdpi" src="www/img/icons/android/Icon-144.png" />
+        <icon density="xxxhdpi" src="www/img/icons/android/Icon-192.png" />
+
     </platform>
     <platform name="ios">
         <allow-intent href="itms:*" />
