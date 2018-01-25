@@ -161,6 +161,9 @@ android {
     defaultConfig {
         versionCode cdvVersionCode ?: new BigInteger("" + privateHelpers.extractIntFromManifest("versionCode"))
         applicationId privateHelpers.extractStringFromManifest("package")
+        jackOptions {
+            enabled true
+        }
 
         if (cdvMinSdkVersion != null) {
             minSdkVersion cdvMinSdkVersion
@@ -256,9 +259,9 @@ android {
 
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: '*.jar')
+    compile fileTree(dir: 'libs', include: '*.jar')
     // SUB-PROJECT DEPENDENCIES START
-    implementation(project(path: ":CordovaLib"))
+    compile(project(path: ":CordovaLib"))
     // SUB-PROJECT DEPENDENCIES END
 }
 
