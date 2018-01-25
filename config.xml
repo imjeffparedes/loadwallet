@@ -24,12 +24,27 @@
         <preference name="StatusBarOverlaysWebView" value="true" />
         <preference name="StatusBarBackgroundColor" value="#165769" />
         <preference name="StatusBarStyle" value="lightcontent" />
+
+        <!-- Android icons -->
         <icon density="ldpi" src="www/img/icons/android/Icon-36.png" />
         <icon density="mdpi" src="www/img/icons/android/Icon-48.png" />
         <icon density="hdpi" src="www/img/icons/android/Icon-72.png" />
         <icon density="xhdpi" src="www/img/icons/android/Icon-96.png" />
         <icon density="xxhdpi" src="www/img/icons/android/Icon-144.png" />
         <icon density="xxxhdpi" src="www/img/icons/android/Icon-192.png" />
+
+
+        <!-- Android splash screens -->
+        <splash src="www/img/screen/android/land-hdpi.png" density="land-hdpi"/>
+        <splash src="www/img/android/land-ldpi.png" density="land-ldpi"/>
+        <splash src="www/img/screen/android/land-mdpi.png" density="land-mdpi"/>
+        <splash src="www/img/screen/android/land-xhdpi.png" density="land-xhdpi"/>
+
+        <splash src="www/img/screen/android/port-hdpi.png" density="port-hdpi"/>
+        <splash src="www/img/screen/android/port-ldpi.png" density="port-ldpi"/>
+        <splash src="www/img/screen/android/port-mdpi.png" density="port-mdpi"/>
+        <splash src="www/img/screen/android/port-xhdpi.png" density="port-xhdpi"/>
+
     </platform>
     <platform name="ios">
         <allow-intent href="itms:*" />

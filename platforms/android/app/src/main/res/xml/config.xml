@@ -17,6 +17,10 @@
     <feature name="SQLitePlugin">
         <param name="android-package" value="io.sqlc.SQLitePlugin" />
     </feature>
+    <feature name="SplashScreen">
+        <param name="android-package" value="org.apache.cordova.splashscreen.SplashScreen" />
+        <param name="onload" value="true" />
+    </feature>
     <name>Loadwallet</name>
     <description>
          Send load, pay bills, check current wallet balance, view previous transactions and manage account settings for loadwallet retailers.
@@ -33,19 +37,15 @@
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
     <allow-intent href="market:*" />
-    <icon density="ldpi" src="platforms/android/app/src/main/res/mipmap-ldpi/ic_launcher.png" />
-    <icon density="mdpi" src="platforms/android/app/src/main/res/mipmap-mdpi/ic_launcher.png" />
-    <icon density="hdpi" src="platforms/android/app/src/main/res/mipmap-hdpi/ic_launcher.png" />
-    <icon density="xhdpi" src="platforms/android/app/src/main/res/mipmap-xhdpi/ic_launcher.png" />
-    <icon density="xxhdpi" src="platforms/android/app/src/main/res/mipmap-xxhdpi/ic_launcher.png" />
-    <icon density="xxxhdpi" src="platforms/android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png" />
+    <icon density="ldpi" src="www/img/icons/android/Icon-36.png" />
+    <icon density="mdpi" src="www/img/icons/android/Icon-48.png" />
+    <icon density="hdpi" src="www/img/icons/android/Icon-72.png" />
+    <icon density="xhdpi" src="www/img/icons/android/Icon-96.png" />
+    <icon density="xxhdpi" src="www/img/icons/android/Icon-144.png" />
+    <icon density="xxxhdpi" src="www/img/icons/android/Icon-192.png" />
     <preference name="loglevel" value="DEBUG" />
     <preference name="android-minSdkVersion" value="14" />
     <preference name="StatusBarOverlaysWebView" value="true" />
     <preference name="StatusBarBackgroundColor" value="#165769" />
     <preference name="StatusBarStyle" value="lightcontent" />
-    <feature name="SplashScreen">
-        <param name="android-package" value="org.apache.cordova.splashscreen.SplashScreen" />
-        <param name="onload" value="true" />
-    </feature>
 </widget>
