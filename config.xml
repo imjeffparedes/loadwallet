@@ -18,14 +18,13 @@
     <plugin name="cordova-plugin-whitelist" spec="~1.2.0" />
     <plugin name="cordova-plugin-console" spec="~1.0.1" />
     <plugin name="cordova-plugin-statusbar" spec="~1.0.1" />
-    <plugin name="cordova-plugin-splashscreen" spec="https://github.com/apache/cordova-plugin-splashscreen.git" />
-    <plugin name="cordova-plugin-inappbrowser" spec="~2.0.1" />
     <platform name="android">
         <preference name="android-minSdkVersion" value="14" />
         <allow-intent href="market:*" />
         <preference name="StatusBarOverlaysWebView" value="true" />
         <preference name="StatusBarBackgroundColor" value="#165769" />
         <preference name="StatusBarStyle" value="lightcontent" />
+
         <!-- Android icons -->
         <icon density="ldpi" src="res/icons/android/Icon-36.png" />
         <icon density="mdpi" src="res/icons/android/Icon-48.png" />
@@ -33,17 +32,19 @@
         <icon density="xhdpi" src="res/icons/android/Icon-96.png" />
         <icon density="xxhdpi" src="res/icons/android/Icon-144.png" />
         <icon density="xxxhdpi" src="res/icons/android/Icon-192.png" />
-        <!-- Android splash screens 
+
+
+        <!-- Android splash screens -->
         <splash src="res/screen/android/land-hdpi.png" density="land-hdpi"/>
         <splash src="res/screen/android/land-ldpi.png" density="land-ldpi"/>
         <splash src="res/screen/android/land-mdpi.png" density="land-mdpi"/>
         <splash src="res/screen/android/land-xhdpi.png" density="land-xhdpi"/>
+
         <splash src="res/screen/android/port-hdpi.png" density="port-hdpi"/>
         <splash src="res/screen/android/port-ldpi.png" density="port-ldpi"/>
         <splash src="res/screen/android/port-mdpi.png" density="port-mdpi"/>
         <splash src="res/screen/android/port-xhdpi.png" density="port-xhdpi"/>
-        -->
-        <splash src="res/screen/android/Default@2x~universal~anyany.png" />
+
     </platform>
     <platform name="ios">
         <allow-intent href="itms:*" />
@@ -53,6 +54,8 @@
         <preference name="StatusBarBackgroundColor" value="#165769" />
         <preference name="StatusBarStyle" value="lightcontent" />
     </platform>
+    <plugin name="cordova-plugin-inappbrowser" spec="~2.0.1" />
     <engine name="ios" spec="~4.4.0" />
     <engine name="android" spec="~7.0.0" />
+    <plugin name="cordova-plugin-splashscreen" spec="https://github.com/apache/cordova-plugin-splashscreen.git" />
 </widget>
