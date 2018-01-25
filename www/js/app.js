@@ -105,7 +105,7 @@ var submitLogin = function(){
       if(status==401){
         modal('Login Failed','Invalid username or password.','danger', function(){});
       }else{
-        modal('Login Failed','Unable to login.','danger', function(){});
+        modal('Login Failed','Unable to login. Please try again later.','danger', function(){});
       }
     });
 }
@@ -187,7 +187,7 @@ function getHistory(page){
       function(xhr, status){
 
         app.dialog.close();
-        modal( 'Request Failed', 'Failed to get history. Please try again later.');
+        modal( 'Request Failed', 'Failed to get history. Please try again later.','danger',function(){});
         
       });
       
@@ -313,15 +313,15 @@ $$(document).on('page:init', function (e) {
 
           var obj = JSON.parse(data);
           if(obj.code=='0000'){
-            app.dialog.alert('An email has been sent to '+obj.sentEmail+' with further instructions.','Success');
+            modal('Success', 'An email has been sent to '+obj.sentEmail+' with further instructions.','success',function(){});  
           }else if(obj.code=='9902'){
-            app.dialog.alert('Username is invalid.','Request Failed');
+            modal('Failed', 'Username is invalid.','danger',function(){});  
           }
         },
         function(xhr, status){
 
           app.dialog.close();
-          app.dialog.alert('Unable to send request.','Request Failed');
+          modal('Failed', 'Unable to send request.','danger',function(){});  
           
         });
     
@@ -463,18 +463,14 @@ $$(document).on('page:init', function (e) {
 
           var obj = JSON.parse(data);
           if(obj.code=='0'){
-
-            app.dialog.alert('Successfully changed mpin.','Change Pin Successful');
+            modal('Change Pin Sucessful','Successfully changed mpin.','success',function(){});
           }else if(obj.code=='9903'){
-            app.dialog.alert('Current mpin is invalid.','Request Failed');
+            modal('Request Failed', 'Current mpin is invalid.','danger',function(){});
           }
         },
         function(xhr, status){
-
-          console.log(xhr)
-
           app.dialog.close();
-          app.dialog.alert('Unable to chnage pin.','Request Failed');
+          modal('Request Failed', 'Unable to chnage pin.','danger',function(){});
           
         });
       page.$el.find('#txt-current-mpin').val('');
