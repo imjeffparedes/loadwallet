@@ -11,7 +11,8 @@
       "cordova-plugin-whitelist": {},
       "cordova-plugin-console": {},
       "cordova-plugin-statusbar": {},
-      "cordova-plugin-inappbrowser": {}
+      "cordova-plugin-inappbrowser": {},
+      "cordova-plugin-splashscreen": {}
     }
   },
   "dependencies": {
@@ -20,6 +21,7 @@
     "cordova-plugin-console": "~1.0.1",
     "cordova-plugin-inappbrowser": "~2.0.1",
     "cordova-plugin-shared-preferences": "0.0.1",
+    "cordova-plugin-splashscreen": "git+https://github.com/apache/cordova-plugin-splashscreen.git",
     "cordova-plugin-statusbar": "~1.0.1",
     "cordova-plugin-whitelist": "~1.2.0",
     "cordova-sqlite-storage": "^2.2.0"

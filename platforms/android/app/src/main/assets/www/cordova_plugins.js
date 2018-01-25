@@ -32,6 +32,14 @@ module.exports = [
     "clobbers": [
       "SQLitePlugin"
     ]
+  },
+  {
+    "id": "cordova-plugin-splashscreen.SplashScreen",
+    "file": "plugins/cordova-plugin-splashscreen/www/splashscreen.js",
+    "pluginId": "cordova-plugin-splashscreen",
+    "clobbers": [
+      "navigator.splashscreen"
+    ]
   }
 ];
 module.exports.metadata = 
@@ -42,7 +50,8 @@ module.exports.metadata =
   "cordova-plugin-statusbar": "1.0.1",
   "cordova-plugin-whitelist": "1.2.2",
   "cordova-plugin-shared-preferences": "0.0.1",
-  "cordova-sqlite-storage": "2.2.0"
+  "cordova-sqlite-storage": "2.2.0",
+  "cordova-plugin-splashscreen": "5.0.1"
 };
 // BOTTOM OF METADATA
 });

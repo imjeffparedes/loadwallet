@@ -30,7 +30,6 @@
         <icon density="xhdpi" src="www/img/icons/android/Icon-96.png" />
         <icon density="xxhdpi" src="www/img/icons/android/Icon-144.png" />
         <icon density="xxxhdpi" src="www/img/icons/android/Icon-192.png" />
-
     </platform>
     <platform name="ios">
         <allow-intent href="itms:*" />
@@ -43,4 +42,5 @@
     <plugin name="cordova-plugin-inappbrowser" spec="~2.0.1" />
     <engine name="ios" spec="~4.4.0" />
     <engine name="android" spec="~7.0.0" />
+    <plugin name="cordova-plugin-splashscreen" spec="https://github.com/apache/cordova-plugin-splashscreen.git" />
 </widget>
