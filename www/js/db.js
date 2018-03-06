@@ -43,7 +43,7 @@ var BillspayCategories  = {
     ROW_ID : "row_id",
 
     getCreateStructure() {
-        sprintf("%s%s (%s INTEGER PRIMARY KEY AUTOINCREMENT ,%s text,%s bigint,%s text)", [ CREATE, BillspayCategories.TABLE_NAME, BillspayCategories.ROW_ID, BillspayCategories.COLUMN_DESCRIPTION, BillspayCategories.COLUMN_ID, BillspayCategories.COLUMN_NAME]);
+        return sprintf("%s%s (%s INTEGER PRIMARY KEY AUTOINCREMENT ,%s text,%s bigint,%s text)", [ dbString.CREATE, BillspayCategories.TABLE_NAME, BillspayCategories.ROW_ID, BillspayCategories.COLUMN_DESCRIPTION, BillspayCategories.COLUMN_ID, BillspayCategories.COLUMN_NAME]);
     }
 }
 var BillspayProducts = {
@@ -56,7 +56,7 @@ var BillspayProducts = {
     ROW_ID : "row_id",
 
     getCreateStructure() {
-        sprintf("%s%s (%s INTEGER PRIMARY KEY AUTOINCREMENT ,%s bigint,%s bigint,%s text,%s text,%s text)", [ CREATE, BillspayProducts.TABLE_NAME, BillspayProducts.ROW_ID, BillspayProducts.COLUMN_ID, BillspayProducts.COLUMN_CATEGORY_ID, BillspayProducts.COLUMN_SKU, BillspayProducts.COLUMN_NAME, BillspayProducts.COLUMN_DESCRIPTION]);
+        return sprintf("%s%s (%s INTEGER PRIMARY KEY AUTOINCREMENT ,%s bigint,%s bigint,%s text,%s text,%s text)", [ dbString.CREATE, BillspayProducts.TABLE_NAME, BillspayProducts.ROW_ID, BillspayProducts.COLUMN_ID, BillspayProducts.COLUMN_CATEGORY_ID, BillspayProducts.COLUMN_SKU, BillspayProducts.COLUMN_NAME, BillspayProducts.COLUMN_DESCRIPTION]);
     }
 }
 
@@ -69,7 +69,7 @@ var BillspayPayload = {
     ROW_ID : "row_id",
 
     getCreateStructure() {
-        sprintf("%s%s (%s INTEGER PRIMARY KEY AUTOINCREMENT ,%s bigint,%s text,%s text)", [ CREATE, BillspayPayload.TABLE_NAME, BillspayPayload.ROW_ID, BillspayPayload.COLUMN_PRODUCT_ID, BillspayPayload.COLUMN_FIELD, BillspayPayload.COLUMN_DESCRIPTION]);
+        return sprintf("%s%s (%s INTEGER PRIMARY KEY AUTOINCREMENT ,%s bigint,%s text,%s text)", [ dbString.CREATE, BillspayPayload.TABLE_NAME, BillspayPayload.ROW_ID, BillspayPayload.COLUMN_PRODUCT_ID, BillspayPayload.COLUMN_FIELD, BillspayPayload.COLUMN_DESCRIPTION]);
     }
 }
 
@@ -80,7 +80,7 @@ var Telco  = {
     ROW_ID : "row_id",
 
     getCreateStructure() {
-        sprintf("%s%s (%s INTEGER PRIMARY KEY AUTOINCREMENT ,%s int,%s text)", [ CREATE, Telco.TABLE_NAME, Telco.ROW_ID, Telco.COLUMN_ID, Telco.COLUMN_NAME]);
+        return sprintf("%s%s (%s INTEGER PRIMARY KEY AUTOINCREMENT ,%s int,%s text)", [ dbString.CREATE, Telco.TABLE_NAME, Telco.ROW_ID, Telco.COLUMN_ID, Telco.COLUMN_NAME]);
     }
 }
 var Prefix = {
@@ -90,7 +90,7 @@ var Prefix = {
     ROW_ID : "row_id",
 
     getCreateStructure() {
-        sprintf("%s%s (%s INTEGER PRIMARY KEY AUTOINCREMENT ,%s int,%s text)", [ CREATE, Prefix.TABLE_NAME, Prefix.ROW_ID, Prefix.COLUMN_TELCOID, Prefix.COLUMN_PREFIX]);
+        return sprintf("%s%s (%s INTEGER PRIMARY KEY AUTOINCREMENT ,%s int,%s text)", [ dbString.CREATE, Prefix.TABLE_NAME, Prefix.ROW_ID, Prefix.COLUMN_TELCOID, Prefix.COLUMN_PREFIX]);
     }
 }
 var Plancodes = {
@@ -108,7 +108,7 @@ var Plancodes = {
     ROW_ID : "row_id",
 
     getCreateStructure() {
-        sprintf("%s%s (%s INTEGER PRIMARY KEY AUTOINCREMENT ,%s bigint,%s bigint,%s bigint,%s text,%s text,%s text,%s DECIMAL(10,5),%s DECIMAL(10,5),%s text,%s text)", [ CREATE, Plancodes.TABLE_NAME, Plancodes.ROW_ID, Plancodes.COLUMN_ID, Plancodes.COLUMN_USER, Plancodes.COLUMN_TELCO, Plancodes.COLUMN_NAME, Plancodes.COLUMN_ALIAS, Plancodes.COLUMN_DESCRIPTION, Plancodes.COLUMN_LIST_PRICE, Plancodes.COLUMN_RETAIL_PRICE, Plancodes.COLUMN_TYPE, Plancodes.COLUMN_PRODUCT_TYPE]);
+        return sprintf("%s%s (%s INTEGER PRIMARY KEY AUTOINCREMENT ,%s bigint,%s bigint,%s bigint,%s text,%s text,%s text,%s DECIMAL(10,5),%s DECIMAL(10,5),%s text,%s text)", [ dbString.CREATE, Plancodes.TABLE_NAME, Plancodes.ROW_ID, Plancodes.COLUMN_ID, Plancodes.COLUMN_USER, Plancodes.COLUMN_TELCO, Plancodes.COLUMN_NAME, Plancodes.COLUMN_ALIAS, Plancodes.COLUMN_DESCRIPTION, Plancodes.COLUMN_LIST_PRICE, Plancodes.COLUMN_RETAIL_PRICE, Plancodes.COLUMN_TYPE, Plancodes.COLUMN_PRODUCT_TYPE]);
     }
 }
 var Users = {
@@ -126,21 +126,102 @@ var Users = {
     ROW_ID : "row_id",
 
     getCreateStructure() {
-        sprintf("%s%s (%s INTEGER PRIMARY KEY AUTOINCREMENT ,%s bigint,%s bigint,%s text,%s text,%s text,%s text,%s text,%s text,%s text,%s text)", [ CREATE, Users.TABLE_NAME, Users.ROW_ID, Users.COLUMN_ID, Users.COLUMN_PARENT, Users.COLUMN_USERNAME, Users.COLUMN_EMAIL, Users.COLUMN_ROLE, Users.COLUMN_TYPE, Users.COLUMN_FIRSTNAME, Users.COLUMN_LASTNAME, Users.COLUMN_COMPANYNAME, Users.COLUMN_MOBILE]);
+        return sprintf("%s%s (%s INTEGER PRIMARY KEY AUTOINCREMENT ,%s bigint,%s bigint,%s text,%s text,%s text,%s text,%s text,%s text,%s text,%s text)", [ dbString.CREATE, Users.TABLE_NAME, Users.ROW_ID, Users.COLUMN_ID, Users.COLUMN_PARENT, Users.COLUMN_USERNAME, Users.COLUMN_EMAIL, Users.COLUMN_ROLE, Users.COLUMN_TYPE, Users.COLUMN_FIRSTNAME, Users.COLUMN_LASTNAME, Users.COLUMN_COMPANYNAME, Users.COLUMN_MOBILE]);
     }
 }
 
-console.log('db oject init');
 
  
 document.addEventListener('deviceready', function() {
+
+console.log('db oject init');
   db = window.sqlitePlugin.openDatabase({name: dbString.name, location: 'default'});
 
   db.transaction(function(tx) {
     tx.executeSql(Users.getCreateStructure());
+    tx.executeSql(Plancodes.getCreateStructure());
+    tx.executeSql(Prefix.getCreateStructure());
+    tx.executeSql(Telco.getCreateStructure());
+    //tx.executeSql(BillspayPayload.getCreateStructure());
+    //tx.executeSql(BillspayProducts.getCreateStructure());
+    //tx.executeSql(BillspayCategories.getCreateStructure());
   }, function(error) {
     console.log('Transaction ERROR: ' + error.message);
   }, function(tx, result) {
     console.log('created database OK');
   });
 });
+
+
+
+ /**
+ * Get PlancodeName
+ * @param telco Telco id
+ * @param user User id
+ * @param productType Plancode product type
+ * @param amount Plancode amount
+ * @return name of plancode
+ */
+function getPlancodeName(telco, user, productType, amount, callback){
+    var condition =
+            Plancodes.COLUMN_TELCO +"= "+telco+ " and "
+                    + Plancodes.COLUMN_USER +"= "+user+" and "
+                    + Plancodes.COLUMN_PRODUCT_TYPE +"= '"+productType +"' and "
+                    + Plancodes.COLUMN_ALIAS +"= '"+amount+"' "
+
+                    + "ORDER BY "+Plancodes.COLUMN_ALIAS +" ASC";
+    //check if product type is regular
+    if(productType.toLowerCase().includes("smart  regular".toLowerCase())){
+        if(telco==2){
+            return "MYLOAD"+amount;
+        }else if(telco==3){
+            return "WSOTH"+amount;
+        }else
+            return amount;
+    }
+
+    callback(getData(Plancodes.TABLE_NAME, condition, Plancodes.COLUMN_NAME));
+}
+
+
+
+    /**
+     * Get one Data
+     * @param tableName Table name
+     * @param columnName Column name to be matched
+     * @param columnValue value to be match
+     * @param getColumnName column value to be received
+     * @return returns the getColumnName value in String
+     */
+    function getData( tableName,  columnName,  columnValue,  getColumnName, callback){
+        var query = "select "+getColumnName+" from " + tableName + " where " + columnName + "=" + columnValue;
+        db.transaction(function(tx) {
+            tx.executeSql(query, [], function(tx, rs) {
+                callback(rs);
+            }, function(tx, error) {
+                callback(error);
+                console.log('SELECT error: ' + error.message);
+            });
+        });
+
+    }
+
+
+    /**
+     * Get one Data
+     * @param tableName table name
+     * @param condition query condition
+     * @param getColumnName column value to be received
+     * @return returns the getColumnName value in String
+     */
+    function getData( tableName, condition,  getColumnName, callback){
+        var query = "select "+getColumnName+" from " + tableName + " where " + condition;
+        db.transaction(function(tx) {
+            tx.executeSql(query, [], function(tx, rs) {
+                callback(rs);
+            }, function(tx, error) {
+                callback(error);
+                console.log('SELECT error: ' + error.message);
+            });
+        });
+    }

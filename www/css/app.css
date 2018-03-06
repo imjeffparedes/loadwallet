@@ -27,94 +27,94 @@
 
 
 .image { 
-       position: relative; 
-       height: 160px;
-    }
+   position: relative; 
+   height: 160px;
+}
 
-    .image h2 { 
-       position: absolute; 
-       top: 65px; 
-       padding: 10px;
-       left: 0; 
-       color: white;
-       height: 160px;
-    }
+.image h2 { 
+   position: absolute; 
+   top: 65px; 
+   padding: 10px;
+   left: 0; 
+   color: white;
+   height: 160px;
+}
 
-    .image p { 
-       position: absolute; 
-       top: 95px; 
-       padding: 10px;
-       left: 0; 
-       color: white;
-       height: 160px;
-    }
+.image p { 
+   position: absolute; 
+   top: 95px; 
+   padding: 10px;
+   left: 0; 
+   color: white;
+   height: 160px;
+}
 
-    .image .logo { 
-       position: absolute; 
-       top: 20px; 
-       padding: 10px;
-       left: 0; 
-    }
-    .panel {
-      overflow: hidden;
-      box-shadow: none !important;
-    }
-    .drawer-item-active{
-      background: #f5f5f5;
-    }
+.image .logo { 
+   position: absolute; 
+   top: 20px; 
+   padding: 10px;
+   left: 0; 
+}
+.panel {
+  overflow: hidden;
+  box-shadow: none !important;
+}
+.drawer-item-active{
+  background: #f5f5f5;
+}
 
-    .item-radio i{
-       margin-right: 15px; margin-top: 5px;
-    }
+.item-radio i{
+   margin-right: 15px; margin-top: 5px;
+}
 
-    .md .bg-color-submit {
-      background-color: #26cead !important;
-    }
+.md .bg-color-submit {
+  background-color: #26cead !important;
+}
 
-    .ios .bg-color-submit {
-      background-color: #26cead !important;
-    }
+.ios .bg-color-submit {
+  background-color: #26cead !important;
+}
 
-    .toolbar-submit{
-      overflow: hidden;
-      box-shadow: none !important;
-    }
+.toolbar-submit{
+  overflow: hidden;
+  box-shadow: none !important;
+}
 
 
-    .md .block-title {
-      color: rgba(0, 0, 0, 0.54);
-      margin: 32px 16px 16px;
-      line-height: 16px;
-      font-weight: 500;
+.md .block-title {
+  color: rgba(0, 0, 0, 0.54);
+  margin: 32px 16px 16px;
+  line-height: 16px;
+  font-weight: 500;
+  float: center;
+  text-align: center;
+}
+
+.md .list-center{
       float: center;
       text-align: center;
-    }
+}
 
-    .md .list-center{
-          float: center;
-          text-align: center;
-    }
+.md .center, .ios .center{
+      float: center;
+      text-align: center;
+}
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+}
 
-    .md .center, .ios .center{
-          float: center;
-          text-align: center;
-    }
-    .noselect {
-      -webkit-touch-callout: none; /* iOS Safari */
-        -webkit-user-select: none; /* Safari */
-         -khtml-user-select: none; /* Konqueror HTML */
-           -moz-user-select: none; /* Firefox */
-            -ms-user-select: none; /* Internet Explorer/Edge */
-                user-select: none; /* Non-prefixed version, currently
-                                      supported by Chrome and Opera */
-    }
-
-    .md .bg-color-primary{
-      background-color: #00b9e6;
-    }
-    .md .bg-color-primary-dark{
-      background-color: #00b9e6;
-    }
+.md .bg-color-primary{
+  background-color: #00b9e6;
+}
+.md .bg-color-primary-dark{
+  background-color: #00b9e6;
+}
 
 .md .toolbar-bottom-md{
   top: auto !important;
@@ -147,31 +147,6 @@
 .middle {
     margin: auto;
 }
-
-input[type=text],input[type=password],input[type=number], textarea {
- 
-  outline: none;
-  padding: 3px 0px 3px 3px;
-  margin: 5px 1px 3px 0px;
-  border: 1px solid #DDDDDD;
-  background-color: #ffffff;
-  border-radius: 10px;
-  padding: 20px;
-
-}
-
-.md input[type=number]{
-  color: black;
-}
- 
-input[type=text]:focus,input[type=password]:focus,input[type=number]:focus, textarea:focus {
-  box-shadow: 0 0 3px rgba(81, 203, 238, 1);
-  padding: 3px 0px 3px 3px;
-  margin: 5px 1px 3px 0px;
-  border: 1px solid rgba(81, 203, 238, 1);
-  padding: 20px;
-}
-
 
 /* Bottom bar button */
 
@@ -234,15 +209,18 @@ input[type=text]:focus,input[type=password]:focus,input[type=number]:focus, text
 .modal-content {
     background-color: #fefefe;
     margin: auto;
-    padding: 20px;
+    padding:5px;
     width: 80%;
+}
+.border-round{
+    border-radius: 4px;
 }
 
 .modal-header {
   border: none;
   color: white;
   font-size: 16px;
-  padding: 20px;
+  padding: 5px;
   width: 80%;
   margin: auto;
   background-color: #00b9e6;
@@ -255,6 +233,7 @@ input[type=text]:focus,input[type=password]:focus,input[type=number]:focus, text
   text-align: center;
   width: 10%;
   background-color: #26cead;
+  margin-bottom: 1em;
 }
 
 .info {background-color: #00b9e6;} /* Blue */
@@ -263,5 +242,30 @@ input[type=text]:focus,input[type=password]:focus,input[type=number]:focus, text
 .default {background-color: #e7e7e7; color: black;} /* Gray */
 .success {background-color: #4CAF50;} /* Green */
 
+
+
+/**Inputs**/
+
+input[type=text],input[type=password],input[type=number], textarea {
+  outline: none;
+  padding: 3px 0px 3px 3px;
+  margin: 5px 1px 3px 0px;
+  border: 1px solid #DDDDDD;
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+input[type=text]:focus,input[type=password]:focus,input[type=number]:focus, textarea:focus {
+  box-shadow: 0 0 3px rgba(81, 203, 238, 1);
+  padding: 3px 0px 3px 3px;
+  margin: 5px 1px 3px 0px;
+  border: 1px solid rgba(81, 203, 238, 1);
+  padding: 20px;
+  color: black;
+}
+
+
+/*
 
 

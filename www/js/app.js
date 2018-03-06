@@ -44,16 +44,24 @@ function onDeviceReady() {
 
 var mainView = app.views.create('.view-main',{});
 
+function hasInternet(){
+
+    if(!window.navigator.onLine){
+      modal('Request Failed', 'No internet connection.','danger',function(){});
+      return false;
+    }
+    return true;
+}
 
 function modal(title, message, color, callback){
   var modal = $$('#modal');
-  $$('#modal .modal-header').addClass(color);
-  $$('#modalTitle').html(title);
-  $$('#modalContent').html(message);
+  modal.find('modal-header').addClass(color);
+  modal.find('#modalTitle').html(title);
+  modal.find('#modalContent').html(message);
   // Display the modal
   modal.show();
   //Hide modal when button is clicked
-  $$('#btnModalClose').on('click', function(){
+  modal.find('#btnModalClose').on('click', function(){
       modal.hide();
       callback();
   });
@@ -63,6 +71,32 @@ function modal(title, message, color, callback){
         modal.hide();
       }
   }
+}
+
+
+function reloadsModal(el,title, message, isSuccess, callback){
+    var modal = $$('#reloadsModal');
+    var content = modal.find('modal-content');
+    if(isSuccess)
+    modal.find('#icon').attr({
+      src:'../img/icons/ic_check.png'
+    })
+    modal.find('#modalTitle').html(title);
+    modal.find('#modalContent').html(message);
+    // Display the modal
+    modal.show();
+    //Hide modal when button is clicked
+   modal.find('#btnModalClose').on('click', function(){
+        modal.hide();
+        callback();
+    });
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+        if (event.target == modal) {
+          modal.hide();
+        }
+    }
+    
 }
 
 var submitLogin = function(){
@@ -78,7 +112,7 @@ var submitLogin = function(){
       }
     });
   
-  app.request.get('http://192.168.2.150:8083/auth/login/',
+  app.request.get('http://13.229.80.248:8083/auth/login/',
    function (data) {
       console.log(data);
 
@@ -136,7 +170,7 @@ function getHistory(page){
           'Authorization':'Bearer '+localStorage.loginToken
         }
     });
-    app.request.post('http://192.168.2.150:8083/reloads/transactions/',
+    app.request.post('http://13.229.80.248:8083/reloads/transactions/',
       {
         offset: offset,
         limit: limit
@@ -231,7 +265,7 @@ $$(document).on('click', '#drawer-item-login', function () {
         }
       });
     
-    app.request.get('http://192.168.2.150:8083/auth/logout/',
+    app.request.get('http://13.229.80.248:8083/auth/logout/',
      function (data) {
         app.router.navigate('/', {history:false});
         console.log(data);
@@ -260,6 +294,7 @@ $$(document).on('page:init', function (e) {
   console.log(page.name+' initialized' );
   
   if(page.name == 'login'){
+
       page.$el.find('#txt-login-mpin-container').hide()
       app.params.swipePanel = false;
       page.$el.find('#link-privacy-policy').on('click', function () {
@@ -321,7 +356,7 @@ $$(document).on('page:init', function (e) {
 
       app.dialog.preloader('Please wait...');
 
-      app.request.post('http://192.168.2.150:8083/auth/forgot/',
+      app.request.post('http://13.229.80.248:8083/auth/forgot/',
         {
          username: username
         },
@@ -346,6 +381,11 @@ $$(document).on('page:init', function (e) {
     });
   }else if(page.name == 'reload'){
 
+
+    reloadsModal('#reloadsModal','Reload Failed','Insufficient account balance.',false,function(){
+     
+    });
+      
     var pickerType =  app.picker.create({
       inputEl: '#select-product-type',
       $inputEl: '#select-product-type',
@@ -408,6 +448,11 @@ $$(document).on('page:init', function (e) {
     page.$el.find('#txt-user-balance-date').html(localStorage.balance_date);
 
      page.$el.find('#btn-submit').on('click', function () {
+      
+      if(!window.navigator.onLine){
+        modal('Request Failed', 'No internet connection.','danger',function(){});
+        return;
+      }
         // Preloader
           app.dialog.preloader('Please wait...');
           app.request.setup({ 
@@ -415,7 +460,7 @@ $$(document).on('page:init', function (e) {
                 'Authorization':'Bearer '+localStorage.loginToken
               }
           });
-          app.request.get('http://192.168.2.150:8083/account/balance/',
+          app.request.get('http://13.229.80.248:8083/account/balance/',
            function (data) {
             app.dialog.close();
               console.log(data);
@@ -431,9 +476,10 @@ $$(document).on('page:init', function (e) {
             function(xhr, status){
 
               app.dialog.close();
-              app.dialog.alert('Unable to get balance.','Request Failed');
+              modal('Request Failed', 'Unable to get balance.','danger',function(){});
               
             });
+      
       })
   
   }else if(page.name == 'change-pin'){
@@ -473,7 +519,7 @@ $$(document).on('page:init', function (e) {
           }
       });
 
-      app.request.post('http://192.168.2.150:8083/account/changepin/',
+      app.request.post('http://13.229.80.248:8083/account/changepin/',
         {
          current_mpin: current_mpin,
          new_mpin: new_mpin 
@@ -530,7 +576,7 @@ $$(document).on('page:init', function (e) {
               'Authorization':'Bearer '+localStorage.loginToken
             }
         });
-        app.request.post('http://192.168.2.150:8083/account/changepassword/',
+        app.request.post('http://13.229.80.248:8083/account/changepassword/',
           {
            currentPassword: currentPassword,
            newPassword: newPassword ,
