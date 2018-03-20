@@ -32,6 +32,7 @@ var app  = new Framework7({
   routes: routes,
 });
 
+ var pickerType = null, pickerDenom = null, telcoPrefixes = [], telcoPlancodes = []
 
 
 document.addEventListener("deviceready", onDeviceReady, false);
@@ -55,7 +56,7 @@ function hasInternet(){
 
 function modal(title, message, color, callback){
   var modal = $$('#modal');
-  modal.find('modal-header').addClass(color);
+  modal.find('#modal-header').addClass(color);
   modal.find('#modalTitle').html(title);
   modal.find('#modalContent').html(message);
   // Display the modal
@@ -83,6 +84,66 @@ function reloadsModal(el,title, message, isSuccess, callback){
     })
     modal.find('#modalTitle').html(title);
     modal.find('#modalContent').html(message);
+    // Display the modal
+    modal.show();
+    //Hide modal when button is clicked
+   modal.find('#btnModalClose').on('click', function(){
+        modal.hide();
+        callback();
+    });
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+        if (event.target == modal) {
+          modal.hide();
+        }
+    }
+    
+}
+
+function vewReload(el,title, message, reload, callback){
+    var modal = $$(el);
+    var content = modal.find('modal-content');
+    if(reload.code==0)
+    modal.find('#icon').attr({
+      src:'../img/icons/ic_check.png'
+    })
+    modal.find('#modalTitle').html(title);
+    modal.find('#modalDescription').html(message);
+    //modal.find('#modalContent').html(message);
+    var product = "";
+            if(reload.Plancode){
+              product = reload.Plancode.name;
+            }
+    var table_reload='';
+     table_reload+='<table class="reloads-table" style="text-align: left; color: #757575;" id="reloads-table"> ';
+      table_reload+='  <tr>';
+      table_reload+='    <td><b>Transaction ID</b></td>';
+      table_reload+='    <td style="text-align: center;">'+reload.tranId+'</td>';
+      table_reload+='  </tr>';
+      table_reload+='  <tr>';
+      table_reload+='    <td>Target</td>';
+      table_reload+='    <td style="text-align: center;">'+reload.target+'</td>';
+      table_reload+='  </tr>';
+      table_reload+='  <tr>';
+      table_reload+='    <td>Product</td>';
+      table_reload+='    <td style="text-align: center;">'+product+'</td>';
+      table_reload+='  </tr>';
+      table_reload+='  <tr>';
+      table_reload+='    <td>Charge</td>';
+      table_reload+='    <td style="text-align: center;">PHP '+reload.charge+'</td>';
+      table_reload+='  </tr>';
+      table_reload+='  <tr>';
+      table_reload+='    <td>Updated Balance</td>';
+      table_reload+='    <td style="text-align: center;">PHP '+reload.balance+'</td>';
+      table_reload+='  </tr>';
+      table_reload+='  <tr>';
+      table_reload+='    <td>Reference No</td>';
+      table_reload+='    <td style="text-align: center;">'+reload.referenceNumber+'</td>';
+      table_reload+='  </tr>';
+       
+      table_reload+='</table>';
+      modal.find('#modalContent').html(reload);
+    
     // Display the modal
     modal.show();
     //Hide modal when button is clicked
@@ -163,6 +224,170 @@ function drawerItemCliked(id){
     drawerItemSelected = id;
 }
 
+
+
+function reload(page, data){
+
+
+    app.dialog.preloader('Please wait...');
+    app.request.setup({ 
+        headers:{
+          'Authorization':'Bearer '+localStorage.loginToken
+        }
+    });
+    app.request.post('http://13.229.80.248:8083/reloads/',data,
+
+     function (result) {
+
+        var obj = JSON.parse(result);
+        if(Object.keys(obj)<=0){
+          modal( 'Request Failed', 'Failed to get history. Please try again later.','danger',function(){});
+          return;
+        }
+        console.log(obj)
+        var val = obj;
+
+       if(('referenceNumber' in val) && val.referenceNumber==null){
+        val.referenceNumber = val.customRefNo 
+       }else{
+         val.referenceNumber = val.customRefNo 
+       
+       }
+
+       var title = "Reload Failed";
+       if(val.code==0)
+          title ="Reload Successful";
+
+
+       var table_reload='';
+       table_reload+='<table class="reloads-table" style="text-align: left; color: #757575;" id="reloads-table"> ';
+        table_reload+='  <tr>';
+        table_reload+='    <td><b>Transaction ID</b></td>';
+        table_reload+='    <td style="text-align: center;">'+val.tranId.toUpperCase()+'</td>';
+        table_reload+='  </tr>';
+        table_reload+='  <tr>';
+        table_reload+='    <td>Target</td>';
+        table_reload+='    <td style="text-align: center;">'+val.target+'</td>';
+        table_reload+='  </tr>';
+        table_reload+='  <tr>';
+        table_reload+='    <td>Product</td>';
+        table_reload+='    <td style="text-align: center;">'+page.$el.find("#select-product-amount").val()+'</td>';
+        table_reload+='  </tr>';
+        table_reload+='  <tr>';
+        table_reload+='    <td>Charge</td>';
+        table_reload+='    <td style="text-align: center;">PHP '+val.charge+'</td>';
+        table_reload+='  </tr>';
+        table_reload+='  <tr>';
+        table_reload+='    <td>Updated Balance</td>';
+        table_reload+='    <td style="text-align: center;">PHP '+val.balance+'</td>';
+        table_reload+='  </tr>';
+        table_reload+='  <tr>';
+        table_reload+='    <td>Reference No</td>';
+        table_reload+='    <td style="text-align: center;">'+val.referenceNumber+'</td>';
+        table_reload+='  </tr>';
+         
+        table_reload+='</table>';
+        vewReload('#transactionReloadsModal', title, val.message, table_reload,function(){});
+
+        app.dialog.close();
+
+        page.$el.find("#reloads-target").val('')
+        page.$el.find("#select-product-type").val('Select Type')
+        page.$el.find("#select-product-amount").val('Select Amount')
+
+       
+      },
+      function(xhr, status){
+        app.dialog.close();
+        modal( 'Request Failed', 'Failed to get history. Please try again later.','danger',function(){});
+        
+      });
+      
+}
+
+
+function getReload(page, tranId){
+  console.log(tranId)
+  if(!tranId || tranId==null){
+    return  modal( 'Required', 'Transaction id or reference number is required.','danger',function(){});
+  }
+
+    app.dialog.preloader('Please wait...');
+    app.request.setup({ 
+        headers:{
+          'Authorization':'Bearer '+localStorage.loginToken
+        }
+    });
+    app.request.get('http://13.229.80.248:8083/reloads/'+tranId,
+
+     function (data) {
+      app.dialog.close();
+
+        var obj = JSON.parse(data);
+        if(Object.keys(obj)<=0){
+          modal( 'Transaction not found', 'No transaction found.','danger',function(){});
+          return;
+        }
+        console.log(obj)
+        var val = object.data;
+
+       if(val.referenceNumber==null){
+          val.referenceNumber = val.customRefNo;
+       }
+
+       if(val.referenceNumber==null){
+          val.referenceNumber = 'n/a';
+       }
+
+       var table_reload='';
+       table_reload+='<table class="reloads-table" style="text-align: left; color: #757575;" id="reloads-table"> ';
+        table_reload+='  <tr>';
+        table_reload+='    <td><b>Transaction ID</b></td>';
+        table_reload+='    <td style="text-align: center;">'+val.tranId.toUpperCase()+'</td>';
+        table_reload+='  </tr>';
+        table_reload+='  <tr>';
+        table_reload+='    <td>Target</td>';
+        table_reload+='    <td style="text-align: center;">'+val.target+'</td>';
+        table_reload+='  </tr>';
+        table_reload+='  <tr>';
+        table_reload+='    <td>Product</td>';
+        table_reload+='    <td style="text-align: center;">'+product+'</td>';
+        table_reload+='  </tr>';
+        table_reload+='  <tr>';
+        table_reload+='    <td>Charge</td>';
+        table_reload+='    <td style="text-align: center;">PHP '+val.charge+'</td>';
+        table_reload+='  </tr>';
+        table_reload+='  <tr>';
+        table_reload+='    <td>Updated Balance</td>';
+        table_reload+='    <td style="text-align: center;">PHP '+val.balance+'</td>';
+        table_reload+='  </tr>';
+        table_reload+='  <tr>';
+        table_reload+='    <td>Reference No</td>';
+        table_reload+='    <td style="text-align: center;">'+val.referenceNumber+'</td>';
+        table_reload+='  </tr>';
+         
+        table_reload+='</table>';
+        vewReload('#historyReloadsModal', 'Request Status',val.message, table_reload,function(){});
+        console.log(val);
+
+       
+      },
+      function(xhr, status){
+        app.dialog.close();
+        console.log(xhr)
+        console.log(status)
+
+        var obj = JSON.parse(xhr.responseText);
+        if(obj.code=='9999'){
+
+          modal( 'Transaction not found', 'No transaction found.','danger',function(){});
+        }else
+        modal( 'Request Failed', 'Failed to get history. Please try again later.','danger',function(){});
+        
+      });
+      
+}
+
 function getHistory(page){
     app.dialog.preloader('Please wait...');
     app.request.setup({ 
@@ -194,7 +419,7 @@ function getHistory(page){
             if(val.Plancode){
               product = val.Plancode.name;
             }
-              list+='<li>'
+              list+='<li >'
               list+='  <a href="#" id="history-transaction-item-'+val.tranId+'" class="item-link item-content">'
               list+='    <div class="item-inner">'
               list+='      <div class="item-title-row">'
@@ -209,9 +434,47 @@ function getHistory(page){
               list+='  </a>'
               list+='</li>'
 
-              page.$el.find('#history-transaction-item-'+val.tranId).on('click', function () {
-                app.dialog.alert('Selected');
+
+              $$(document).on('click', '#history-transaction-item-'+val.tranId, function (e) {
+                //  app.router.navigate('/', null);
+                 if(val.referenceNumber==null){
+                  val.referenceNumber = val.customRefNo;
+                 }
+
+                 var table_reload='';
+                 table_reload+='<table class="reloads-table" style="text-align: left; color: #757575;" id="reloads-table"> ';
+                  table_reload+='  <tr>';
+                  table_reload+='    <td><b>Transaction ID</b></td>';
+                  table_reload+='    <td style="text-align: center;">'+val.tranId.toUpperCase()+'</td>';
+                  table_reload+='  </tr>';
+                  table_reload+='  <tr>';
+                  table_reload+='    <td>Target</td>';
+                  table_reload+='    <td style="text-align: center;">'+val.target+'</td>';
+                  table_reload+='  </tr>';
+                  table_reload+='  <tr>';
+                  table_reload+='    <td>Product</td>';
+                  table_reload+='    <td style="text-align: center;">'+product+'</td>';
+                  table_reload+='  </tr>';
+                  table_reload+='  <tr>';
+                  table_reload+='    <td>Charge</td>';
+                  table_reload+='    <td style="text-align: center;">PHP '+val.charge+'</td>';
+                  table_reload+='  </tr>';
+                  table_reload+='  <tr>';
+                  table_reload+='    <td>Updated Balance</td>';
+                  table_reload+='    <td style="text-align: center;">PHP '+val.balance+'</td>';
+                  table_reload+='  </tr>';
+                  table_reload+='  <tr>';
+                  table_reload+='    <td>Reference No</td>';
+                  table_reload+='    <td style="text-align: center;">'+val.referenceNumber+'</td>';
+                  table_reload+='  </tr>';
+                   
+                  table_reload+='</table>';
+                vewReload('#historyReloadsModal', 'Request Status',val.message, table_reload,function(){});
+                console.log(val);
               });
+
+
+
         });
 
         list+='';
@@ -225,6 +488,88 @@ function getHistory(page){
       });
       
 }
+
+
+function telcoChange(page, mobile){
+
+    var providers = $$('#reloads-providers')
+  if(mobile.length >4){
+
+      var telcoId = 0;
+
+      for(i = 0; i< telcoPrefixes.length; i++){    
+          if(telcoPrefixes[i].prefixes.indexOf(mobile.substring(0,4)) !== -1){
+              telcoId= telcoPrefixes[i].telcoId
+          }        
+      }
+    console.log('Mobile Telco:' +telcoId)
+
+    if(telcoId==2){
+      providers.attr('src','img/logo_smart.png')
+    }else if(telcoId ==3){
+      providers.attr('src','img/logo_sun.png')
+    }else{
+
+      var uniqueNames = [];
+      var obj = telcoPlancodes
+
+      if(obj.length<=0) return;
+      
+      for(i = 0; i< obj.length; i++){    
+          if(uniqueNames.indexOf(obj[i].productType) === -1 ){
+            if(obj[i].productType=='Cignal' || obj[i].productType== 'PLDT' || obj[i].productType=='Meralco')
+              uniqueNames.push(obj[i].productType);        
+            
+          }        
+      }
+    
+      var col = pickerType.params.cols[0]
+      col.values = uniqueNames
+      console.log(uniqueNames)
+
+      providers.attr('src','img/logo_others.png')
+      return;
+    }
+
+
+      var uniqueNames = [];
+      var obj = telcoPlancodes
+
+      if(obj.length<=0) return;
+
+      for(i = 0; i< obj.length; i++){    
+          if(obj[i].telco ==telcoId && uniqueNames.indexOf(obj[i].productType) === -1 ){
+            if(obj[i].productType!='Cignal' &&obj[i].productType!= 'PLDT' && obj[i].productType!='Meralco')
+              uniqueNames.push(obj[i].productType);        
+            
+          }        
+      }
+    
+      var col = pickerType.params.cols[0]
+      col.values = uniqueNames
+  }else{
+
+
+      var uniqueNames = [];
+      var obj = telcoPlancodes
+
+      if(obj.length<=0) return;
+      
+      for(i = 0; i< obj.length; i++){    
+          if(uniqueNames.indexOf(obj[i].productType) === -1 ){
+             uniqueNames.push(obj[i].productType);        
+          }        
+      }
+    
+      var col = pickerType.params.cols[0]
+      col.values = uniqueNames
+      console.log(uniqueNames)
+
+      providers.attr('src','img/providers.png')
+  }
+}
+
+
 
 $$(document).on('click', '#drawer-item-reload', function (e) {
   //  app.router.navigate('/', null);
@@ -286,6 +631,8 @@ $$(document).on('click', '#drawer-item-login', function () {
     drawerItemCliked('#drawer-item-login');
 
 });
+
+
 
 // Option 1. Using one 'page:init' handler for all pages
 $$(document).on('page:init', function (e) {
@@ -382,64 +729,163 @@ $$(document).on('page:init', function (e) {
   }else if(page.name == 'reload'){
 
 
-    reloadsModal('#reloadsModal','Reload Failed','Insufficient account balance.',false,function(){
-     
-    });
-      
-    var pickerType =  app.picker.create({
-      inputEl: '#select-product-type',
-      $inputEl: '#select-product-type',
-      cols: [
-        {
-          textAlign: 'center',
-          values: ['All network', 'All out Surf', 'All text', 'Big Bytes', 'Call & Text Combo', 'Call & Text Unlimited', 'Flexi Max', 'Gaan text', 'Smart Regular Load']
+    page.$el.find('#btn-reloads-about').on('click', function () {
+      modal( 'About', '<img src="../img/logo_brand_dark_3.png" width="80%"> <br> <b class="color-gray ">1.0.0</b> <p>Communigate Technologies Inc.</p><p >By using this app you agree to our <a href="https://loadwallet.com/#!/mobile/privacy-policy">Privacy Policy</a> and accept our <a href="https://loadwallet.com/#!/mobile/terms-and-condition">Terms and Conditions</a></p>','info',function(){})
+    })
+
+
+    page.$el.find('#btn-reloads-update-products').on('click', function () {
+
+    })
+    
+
+
+  // Display product types
+    app.dialog.preloader('Please wait...');
+    app.request.setup({ 
+        headers:{
+          'Authorization':'Bearer '+localStorage.loginToken
         }
-      ]
     });
 
-    var pickerDenom = app.picker.create({
+    pickerDenom = app.picker.create({
       inputEl: '#select-product-amount',
       cols: [
         {
           textAlign: 'center',
-          values: ['All Text 60', 'All Text Plus', 'All text 10']
+          values: ['Select Amount']
         }
-      ]
+      ],
+       on: {
+          close: function () {
+            var col = pickerDenom.params.cols[0]
+            page.$el.find('#reload-selected-plancode').val( denomValues[col.values.indexOf(col.value)] )
+          }
+        }
     });
+
+    var denomValues = []
+    var denomDisplayValues = []
+
+     app.request.get('http://13.229.80.248:8083/telco/prefixes/',
+     function (data) {
+        app.dialog.close();
+        telcoPrefixes = JSON.parse(data);
+        console.log(telcoPrefixes)
+      },
+      function(xhr, status){
+
+        app.dialog.close();
+        modal('Ops!', 'Unable to get telco prefixes.','danger',function(){});
+        
+      });
+
+      
+
+    app.request.post('http://13.229.80.248:8083/telco/plancodes/',
+     function (data) {
+        app.dialog.close();
+        var obj = JSON.parse(data);
+        telcoPlancodes = obj
+        console.log(obj)
+
+        var uniqueNames = [];
+
+        if(obj.length>0){
+
+          for(i = 0; i< obj.length; i++){    
+              if(uniqueNames.indexOf(obj[i].productType) === -1){
+                  uniqueNames.push(obj[i].productType);        
+              }        
+          }
+
+        }
+        uniqueNames.sort()
+
+        console.log(uniqueNames)
+
+        pickerType =  app.picker.create({
+          inputEl: '#select-product-type',
+          $inputEl: '#select-product-type',
+          cols: [
+            {
+              textAlign: 'center',
+              values: uniqueNames
+            }
+          ],
+           on: {
+              close: function () {
+
+                var col = pickerDenom.params.cols[0]
+                col.values = ['Select Amount']
+                var selectedProductType = pickerType.getValue() 
+                denomDisplayValues = []
+                denomValues = []
+                for(i = 0; i< obj.length; i++){    
+                  if(obj[i].productType == selectedProductType){
+                    denomDisplayValues.push(obj[i].alias)
+                    denomValues.push(obj[i].name)
+                  }        
+                }
+                col.values = denomDisplayValues
+              }
+            }
+        });
+
+        
+
+       
+      },
+      function(xhr, status){
+
+        app.dialog.close();
+        modal('Ops!', 'Unable to get plancodes.','danger',function(){});
+        
+      });
+
+    
 
     
     $$('#txt-user-name').html(localStorage.name);
     $$('#txt-user-info').html(localStorage.username+' | '+localStorage.email);
+    if (!Date.now) {
+        Date.now = function() { return new Date().getTime(); }
+    }
+
     page.$el.find('#btn-submit').on('click', function () {
       // Preloader
-        app.dialog.preloader();
-        setTimeout(function () {
-          app.dialog.close();
-
-              app.dialog.alert($$('#txt-mobile').val());
-          
-        }, 200);
+        var data = {
+          amount : page.$el.find('#reload-selected-plancode').val(),
+          target : page.$el.find('#reloads-target').val(),
+          customRefNo: Date.now()
+        }
+        reload(page,data)
 
     })
+
+    $$('#reloads-target').on('keyup', function (e) {
+      console.log('input value changed');
+      telcoChange(page,$$('#reloads-target').val())
+    });
+
+
+
   
   }else if(page.name == 'history'){
 
 
+    getHistory(page);
 
     page.$el.find('#btn-load-more-history').on('click', function () {
       // Preloader
       offset+=5;
       getHistory(page);
-
-
     })
 
     page.$el.find('#btn-submit').on('click', function () {
       // Preloader
-        app.dialog.preloader();
-        setTimeout(function () {
-          app.dialog.close();
-        }, 200);
+
+          getReload(page,page.$el.find('#history-input-tranid').val())
     })
   
   }else if(page.name == 'balance'){

@@ -21,7 +21,7 @@
             <div class="item-inner">
               <div class="item-title item-label">Enter Reference No or Transaction ID</div>
               <div class="">
-                <input type="text" placeholder="e.g 8SDJ98ASDH or 7545171818" class="text-align-center">
+                <input type="text" id="history-input-tranid" placeholder="e.g 8SDJ98ASDH or 7545171818" class="text-align-center">
                 <span class="input-clear-button"></span>
               </div>
             </div>
@@ -43,4 +43,24 @@
     
           <div id="bottom"><a id="btn-submit" class="button">SUBMIT</a></div>
   </div>
+
+   <!-- Reloads Modal -->
+    <div id="historyReloadsModal" class="modal text-align-center" style="height: 100%;">
+      
+      <!-- Modal content -->
+      <div class="modal-content border-round">
+        <img id="icon" src="../img/icons/ic_x.png" height="80px" style="margin-bottom: -15px;">
+        
+        <p ><b id='modalTitle'></b></p>
+        <p id='modalDescription'></p>
+      
+        <p id='modalContent'></p>
+
+          
+          <a id="btnModalClose" class="button button-fill bg-color-submit"> OK </a>
+      </div>
+    </div>
+
 </div>
+
+

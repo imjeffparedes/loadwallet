@@ -228,12 +228,9 @@
 
 
 .modal-content .button {
-  float: center;
-  margin: 0 auto;
+
   text-align: center;
-  width: 10%;
-  background-color: #26cead;
-  margin-bottom: 1em;
+  width:100px; margin:0 auto;
 }
 
 .info {background-color: #00b9e6;} /* Blue */
@@ -252,7 +249,7 @@ input[type=text],input[type=password],input[type=number], textarea {
   margin: 5px 1px 3px 0px;
   border: 1px solid #DDDDDD;
   background-color: #ffffff;
-  border-radius: 10px;
+  border-radius: 5px;
   padding: 20px;
 }
 
@@ -267,5 +264,30 @@ input[type=text]:focus,input[type=password]:focus,input[type=number]:focus, text
 
 
 /*
+
+
+/** Reloads Modal **/
+
+#reloads-table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#reloads-table td, #reloads-table th {
+    border: 1px solid #ddd;
+    padding: 5px;
+}
+
+#reloads-table tr:nth-child(even){background-color: #f2f2f2;}
+
+#reloads-table tr:hover {background-color: #ddd;}
+
+#reloads-table th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #4CAF50;
+    color: white;
+}
 
 

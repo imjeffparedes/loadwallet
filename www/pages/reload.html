@@ -13,20 +13,34 @@
       </div>
       <div class="title sliding">Reload</div>
       <div class="right">
-        <a href="#" class="link icon-only panel-open no-ripple" data-panel="right">
+        <a class="link popover-open" href="#" data-popover=".popover-links">
+
           <i class="icon f7-icons ios-only">more_vert</i>
           <i class="icon material-icons md-only">more_vert</i>
         </a>
+        
       </div>
     </div>
   </div>
 
   <div class="page-content" data-name="reload">
+   
+    <div class="popover popover-links">
+      <div class="popover-inner">
+        <div class="list">
+          <ul>
+            <li><a class="list-button item-link popover-close" href="#" id="btn-reloads-about">About</a></li>
+            <li><a class="list-button item-link popover-close" href="#" id="btn-reloads-update-products">Update Products</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
     <br>
 
     <div class="block center">  
         <div class="logo" style="margin: 35px;">
-          <img src="img/providers.png" width="100%"  style="max-width: 500px;">   
+          <img src="img/providers.png" width="100%" id="reloads-providers" style="max-width: 500px;">   
         </div>
     </div>
 
@@ -37,7 +51,7 @@
             <div class="item-inner">
               <div class="item-title item-label">Target Number</div>
               <div class="">
-                <input type="text" placeholder="e.g 09181234567 or 45171818" id="txt-mobile" class="text-align-center">
+                <input type="text" placeholder="e.g 09181234567 or 45171818" id="reloads-target" class="text-align-center">
                 <span class="input-clear-button"></span>
               </div>
             </div>
@@ -64,6 +78,7 @@
                 <div class="item-inner">
                   <div class="item-title item-label text-align-center">Select Amount</div>
                   <div class="">
+                    <input type="hidden" id="reload-selected-plancode" >
                     <input type="text" placeholder="Select Amount"  id="select-product-amount"  style="float: center; text-align: center;"/>
                   </div>
                 </div>
@@ -74,44 +89,24 @@
       </div>
     <div id="bottom"><a id="btn-submit" class="button">SUBMIT</a></div>
   </div>
+
+
    <!-- Reloads Modal -->
-    <div id="reloadsModal" class="modal text-align-center">
+    <div id="transactionReloadsModal" class="modal text-align-center" style="height: 100%;">
       
       <!-- Modal content -->
       <div class="modal-content border-round">
-        <p ><img id="icon" src="../img/icons/ic_x.png" height="80px"><br><b id='modalTitle'></b></p>
+        <img id="icon" src="../img/icons/ic_x.png" height="80px" style="margin-bottom: -15px;">
         
+        <p ><b id='modalTitle'></b></p>
+        <p id='modalDescription'></p>
+      
         <p id='modalContent'></p>
 
-        <table class="reloads-table" style="text-align: left; padding: 10px; color: #757575;"> 
-          <tr>
-            <td><b>Transaction ID</b></td>
-            <td style="text-align: center;">8S7D8SDJF</td>
-          </tr>
-          <tr>
-            <td>Target</td>
-            <td style="text-align: center;">09181111111</td>
-          </tr>
-          <tr>
-            <td>Product</td>
-            <td style="text-align: center;">All Out Surf 20</td>
-          </tr>
-          <tr>
-            <td>Charge</td>
-            <td style="text-align: center;">PHP 0.00</td>
-          </tr>
-          <tr>
-            <td>Updated Balance</td>
-            <td style="text-align: center;">PHP 0.00</td>
-          </tr>
-          <tr>
-            <td>Reference No</td>
-            <td style="text-align: center;">8236476237467236</td>
-          </tr>
-         
-        </table>
-
-        <button id="btnModalClose" class="button button-fill" style="background-color: #26cead">OK</button>
+          
+          <a id="btnModalClose" class="button button-fill bg-color-submit"> OK </a>
       </div>
     </div>
+
+
 </div>
