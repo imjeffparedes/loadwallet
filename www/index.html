@@ -23,6 +23,9 @@
   <link rel="stylesheet" href="lib/framework7/css/framework7.min.css">
   <link rel="stylesheet" href="css/icons.css">
   <link rel="stylesheet" href="css/app.css">
+  <link rel="stylesheet" href="css/swal-custom.css">
+
+  <link rel="stylesheet" href="lib/toastr/toastr.min.css">
   <style type="text/css">
     
   </style>
@@ -34,7 +37,7 @@
 
       <!-- Statusbar overlay -->
       <div class="statusbar"></div>
-    <div class="panel panel-left panel-cover">
+    <div class="panel panel-left  panel-reveal">
       
       <div class="image">
         
@@ -147,7 +150,7 @@
                   <li class="item-content item-input">
                     <div class="item-inner">
                       <div class="">
-                        <input type="password" placeholder="Enter your MPIN" id="txt-login-mpin" class="text-align-center" >
+                        <input type="password" placeholder="Enter your MPIN" id="txt-login-mpin" class="text-align-center " >
                         <span class="input-clear-button"></span>
                       </div>
                     </div>
@@ -158,8 +161,8 @@
                  
                   <li class="item-content item-input">
                     <div class="item-inner">
-                      <div class="">
-                        <input type="text" placeholder="Username" value="jeffretailer2" id="txt-login-username" class="text-align-center">
+                      <div class="no-border">
+                        <input type="text" placeholder="Username" value="jeffretailer2" id="txt-login-username" class="text-align-center ">
                         <span class="input-clear-button"></span>
                       </div>
                     </div>
@@ -171,7 +174,7 @@
                   <li class="item-content item-input">
                     <div class="item-inner">
                       <div class="">
-                        <input type="password" placeholder="Password" value="admin" id="txt-login-password" class="text-align-center">
+                        <input type="password" placeholder="Password" value="admin" id="txt-login-password" class="text-align-center ">
                         <span class="input-clear-button"></span>
                       </div>
                     </div>
@@ -234,6 +237,10 @@
   <!-- Framework7 library -->
   <script src="lib/framework7/js/framework7.js"></script>
   <script src="lib/moment.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.21.0/locale/en-gb.js"></script>
+  <script src="lib/toastr/toastr.min.js"></script>
 
   <!-- App routes -->
   <script src="js/routes.js"></script>

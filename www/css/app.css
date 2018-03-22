@@ -243,7 +243,7 @@
 
 /**Inputs**/
 
-input[type=text],input[type=password],input[type=number], textarea {
+input[type=text],input[type=tel],input[type=password],input[type=number], textarea {
   outline: none;
   padding: 3px 0px 3px 3px;
   margin: 5px 1px 3px 0px;
@@ -253,13 +253,17 @@ input[type=text],input[type=password],input[type=number], textarea {
   padding: 20px;
 }
 
-input[type=text]:focus,input[type=password]:focus,input[type=number]:focus, textarea:focus {
-  box-shadow: 0 0 3px rgba(81, 203, 238, 1);
+input[type=text]:focus,input[type=tel]:focus,input[type=password]:focus,input[type=number]:focus, textarea:focus {
+  box-shadow: none;
   padding: 3px 0px 3px 3px;
   margin: 5px 1px 3px 0px;
   border: 1px solid rgba(81, 203, 238, 1);
   padding: 20px;
   color: black;
+}
+
+.no-border {
+  border: none;
 }
 
 
@@ -288,6 +292,48 @@ input[type=text]:focus,input[type=password]:focus,input[type=number]:focus, text
     text-align: left;
     background-color: #4CAF50;
     color: white;
+}
+
+
+
+/*niko*/
+body.with-panel-left-cover .panel,
+body.with-panel-right-cover .panel {
+  box-shadow: none;
+  overflow: visible;
+}
+
+body.with-panel-left-cover .panel::after,
+body.with-panel-right-cover .panel::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-shadow: 0 0px 20px rgba(0, 0, 0, 0.5);
+}
+/*niko*/
+
+/*Removing all shadow*/
+
+
+.md .dialog {
+  box-shadow: none;
+}
+
+.md .popover {
+  box-shadow: none; 
+}
+
+.md.with-panel-left-cover .panel-cover,
+.md.with-panel-right-cover .panel-cover {
+  box-shadow: none;
+}
+
+.swal2-container.swal2-shown {
+  background: none;
 }
 
 
