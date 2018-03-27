@@ -6,7 +6,9 @@ var offset = 0, limit = 5;
 
 // Framework7 App main instance
 var app  = new Framework7({
-  swipePanel : 'left',
+  panel:{
+    swipe: 'left'
+  },
   root: '#app', // App root element
   id: 'io.comgtech.loadwallet', // App bundle ID
   name: 'About', // App name
@@ -202,6 +204,8 @@ var submitLogin = function(){
         localStorage.email = obj.user.email;
         localStorage.balance = obj.user.balance.toFixed(2);
         app.router.navigate('/reload/', null);
+
+        app.panel.allowOpen = true;
       }
 
 
@@ -394,11 +398,9 @@ function showReloadStatus(val){
 
 
 function getReload(page, tranId){
-  console.log(tranId)
   if(!tranId || tranId==null){
     return  modal( 'Required', 'Transaction id or reference number is required.','danger',function(){});
   }
-
     app.dialog.preloader('Please wait...');
     app.request.setup({ 
         headers:{
@@ -415,8 +417,6 @@ function getReload(page, tranId){
           modal( 'Transaction not found', 'No transaction found.','danger',function(){});
           return;
         }
-        console.log(obj)
-
         showReloadStatus(obj)
        
       },
@@ -437,6 +437,8 @@ function getReload(page, tranId){
       });
       
 }
+
+var historyItems= [];
 
 function getHistory(page){
     app.dialog.preloader('Please wait...');
@@ -497,19 +499,17 @@ function getHistory(page){
               list+='    </div>'
               list+='  </a>'
               list+='</li>'
-
-
+            
+              //$$(document).on('click','#history-transaction-item-'+val.tranId,clickHandler);
+              if(historyItems.includes('#history-transaction-item-'+val.tranId)){
+                return
+              }
+              historyItems.push('#history-transaction-item-'+val.tranId)
+              $$(document).on('click','#history-transaction-item-'+val.tranId,function(e){
+                getReload(page, val.tranId)
+              })
+              
              
-             // $$('#history-transaction-item-'+val.tranId).off('click');
-              //$$('#history-transaction-item-'+val.tranId).on('click', listenerFn);
-            //  $$('#history-transaction-item-'+val.tranId).on('click', listenerFn);
-
-            function clickHandler(){
-              showReloadStatus(val)
-            }
-              $$(document).off('click','#history-transaction-list');
-
-              $$(document).on('click','#history-transaction-item-'+val.tranId,clickHandler);
         });
 
         list+='';
@@ -528,18 +528,18 @@ function getHistory(page){
 }
 
          
-          function removeAllListeners(node, event) {
-              if(node in _eventHandlers) {
-                  var handlers = _eventHandlers[node];
-                  if(event in handlers) {
-                      var eventHandlers = handlers[event];
-                      for(var i = eventHandlers.length; i--;) {
-                          var handler = eventHandlers[i];
-                          node.removeEventListener(event, handler[0], handler[1]);
-                      }
-                  }
-              }
-          }
+function removeAllListeners(node, event) {
+    if(node in _eventHandlers) {
+        var handlers = _eventHandlers[node];
+        if(event in handlers) {
+            var eventHandlers = handlers[event];
+            for(var i = eventHandlers.length; i--;) {
+                var handler = eventHandlers[i];
+                node.removeEventListener(event, handler[0], handler[1]);
+            }
+        }
+    }
+}
 
 
 function toast($text){
@@ -576,16 +576,16 @@ function sessionExpired(){
 
 function telcoChange(page, mobile){
 
-    var providers = $$('#reloads-providers')
+  var providers = $$('#reloads-providers')
   if(mobile.length >4){
 
-      var telcoId = 0;
+    var telcoId = 0;
 
-      for(i = 0; i< telcoPrefixes.length; i++){    
-          if(telcoPrefixes[i].prefixes.indexOf(mobile.substring(0,4)) !== -1){
-              telcoId= telcoPrefixes[i].telcoId
-          }        
-      }
+    for(i = 0; i< telcoPrefixes.length; i++){    
+        if(telcoPrefixes[i].prefixes.indexOf(mobile.substring(0,4)) !== -1){
+            telcoId= telcoPrefixes[i].telcoId
+        }        
+    }
     console.log('Mobile Telco:' +telcoId)
 
     if(telcoId==2){
@@ -658,7 +658,6 @@ function telcoChange(page, mobile){
 $$(document).on('click', '#drawer-item-reload', function (e) {
   //  app.router.navigate('/', null);
     drawerItemCliked('#drawer-item-reload');
-    app.params.swipePanel = true;
 });
 $$(document).on('click', '#drawer-item-history', function () {
   //  app.router.navigate('/history/', null);
@@ -685,7 +684,6 @@ $$(document).on('click', '#drawer-item-balance', function () {
 $$(document).on('click', '#drawer-item-login', function () {
     //app.router.back('/', {history:false});
 
-
     app.dialog.preloader('Please wait...');
     //Submit logout request
     app.request.setup({ 
@@ -696,7 +694,6 @@ $$(document).on('click', '#drawer-item-login', function () {
     
     app.request.get('http://13.229.80.248:8083/auth/logout/',
      function (data) {
-        app.router.navigate('/', {history:false});
         console.log(data);
         localStorage.username =null;
         localStorage.parentId = null;
@@ -708,27 +705,39 @@ $$(document).on('click', '#drawer-item-login', function () {
       
       },
       function(xhr, status){
-        app.router.navigate('/', {history:false});
         app.dialog.close();
       });
 
-    drawerItemCliked('#drawer-item-login');
+      app.router.navigate('/', {history:false});
+      drawerItemCliked('#drawer-item-login');
 
 });
 
 
+    $$('#drawer-link-about').on('click', function () {
+      modal( 'About', '<img src="/img/logo_brand_dark_3.png" width="80%"> <br> <b class="color-gray ">1.0.0</b> <p>Communigate Technologies Inc.</p><p >By using this app you agree to our <a href="https://loadwallet.com/#!/mobile/privacy-policy">Privacy Policy</a> and accept our <a href="https://loadwallet.com/#!/mobile/terms-and-condition">Terms and Conditions</a></p>','info',function(){})
+    })
 
+
+$$('.external').on('click', function (e) {
+  var url = $$(this).attr("href");
+  window.open(url, "_system");
+})
 
 // Option 1. Using one 'page:init' handler for all pages
 $$(document).on('page:init', function (e) {
   // Do something here when page loaded and initialized
   var page =e.detail;
   console.log(page.name+' initialized' );
+
+      app.panel.left.swipeable = true;
   
   if(page.name == 'login'){
 
+      app.panel.left.swipeable = false;
+  
+      console.log(app)
       page.$el.find('#txt-login-mpin-container').hide()
-      app.params.swipePanel = false;
       page.$el.find('#link-privacy-policy').on('click', function () {
         cordova.InAppBrowser.open('https://loadwallet.com/#!/mobile/privacy-policy', '_system', 'location=no');
       })
@@ -782,6 +791,8 @@ $$(document).on('page:init', function (e) {
       })
   }else if(page.name == 'forgot-password'){
 
+      app.panel.left.swipeable = false;
+
     page.$el.find('#btn-submit').on('click', function () {
 
       var username = page.$el.find('#txt-username').val() +'';
@@ -818,8 +829,9 @@ $$(document).on('page:init', function (e) {
   }else if(page.name == 'reload'){
 
     page.$el.find('#btn-reloads-about').on('click', function () {
-      modal( 'About', '<img src="../img/logo_brand_dark_3.png" width="80%"> <br> <b class="color-gray ">1.0.0</b> <p>Communigate Technologies Inc.</p><p >By using this app you agree to our <a href="https://loadwallet.com/#!/mobile/privacy-policy">Privacy Policy</a> and accept our <a href="https://loadwallet.com/#!/mobile/terms-and-condition">Terms and Conditions</a></p>','info',function(){})
+      modal( 'About', '<img src="/img/logo_brand_dark_3.png" width="80%"> <br> <b class="color-gray ">1.0.0</b> <p>Communigate Technologies Inc.</p><p >By using this app you agree to our <a href="https://loadwallet.com/#!/mobile/privacy-policy">Privacy Policy</a> and accept our <a href="https://loadwallet.com/#!/mobile/terms-and-condition">Terms and Conditions</a></p>','info',function(){})
     })
+
 
 
     page.$el.find('#btn-reloads-update-products').on('click', function () {
@@ -831,7 +843,7 @@ $$(document).on('page:init', function (e) {
     // Display product types
     setTimeout(function() {
 
-      app.dialog.preloader('Please wait...');
+      //app.dialog.preloader('Please wait...');
       app.request.setup({ 
           headers:{
             'Authorization':'Bearer '+localStorage.loginToken
@@ -856,7 +868,6 @@ $$(document).on('page:init', function (e) {
 
       var denomValues = []
       var denomDisplayValues = []
-
        app.request.get('http://13.229.80.248:8083/telco/prefixes/',
        function (data) {
           app.dialog.close();

@@ -336,4 +336,8 @@ body.with-panel-right-cover .panel::after {
   background: none;
 }
 
+.panel{
+  overflow: scroll;
+}
+
 

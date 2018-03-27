@@ -9,3 +9,13 @@
 	border:none;
   	background-color: #26cead;
 }
+
+.swal-title{
+	margin-bottom: 5px;
+	margin-top: 5px;
+	font-size: 20px;
+}
+.swal-icon{
+	margin-bottom: 5px;
+	margin-top: 5px;
+}
